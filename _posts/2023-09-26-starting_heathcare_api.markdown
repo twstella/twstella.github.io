@@ -1,0 +1,41 @@
+---
+layout: post
+title: "Google Cloud Health API-시작하기"
+date: 2023-09-26 22:46:23 +0900
+category: Health_API
+---
+# 시작하기 전에
+<ol>
+<li>Google Cloud 콘솔에서 프로젝트 생성/선택
+<img class="picture"  src='{{ "public/img/console.png" | relative_url }}' alt='relative'/></li>
+<li>
+Google Healthcare API 사용 설정
+<img class="picture"  src='{{ "public/img/api_valid.png" | relative_url }}' alt='relative'/><br>
+<div class="explain">API 및 서비스 > API 및 서비스 사용 설정 > Cloud Healthcare API</div>
+</li>
+<li>Cloud Shell 실행 후 결과 확인</li>
+</ol>
+```
+> gcloud auth application-default print-access-token
+``` 
+
+# 데이터셋 생성
+<ol>
+<li>Google Cloud 콘솔에서 Healthcare 검색
+<img class="picture"  src='{{ "public/img/console_health.png" | relative_url }}' alt='relative'/>
+</li>
+<li>데이터 세트 만들기 클릭<br>
+<img class="picture"  src='{{ "public/img/healthcare_browser.png" | relative_url }}' alt='relative'/><br>
+<div class="explain">정보 입력 후 만들기</div>
+</li>
+<li>
+데이터 스토어 만들기<br>
+<img class="picture"  src='{{ "public/img/make_dataset1.png" | relative_url }}' alt='relative'/><br>
+<div class="explain">2에서 만든 데이터 셋 클릭 > 데이터 스토어 만들기</div><br>
+<img class="picture"  src='{{ "public/img/make_dataset2.png" | relative_url }}' alt='relative'/><br>
+<div class="explain">
+정보 입력 후 만들기<br>
+FHIR 뷰어 > FHIR 스토어 선택해서 Path 확인 가능
+</div>
+</li>
+</ol>
