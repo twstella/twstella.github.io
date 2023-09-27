@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-27T17:01:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">Google Cloud Health API-시작하기</title><link href="http://localhost:4000/health_api/2023/09/26/testing.html" rel="alternate" type="text/html" title="Google Cloud Health API-시작하기" /><published>2023-09-26T22:46:23+09:00</published><updated>2023-09-26T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/26/testing</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/26/testing.html"><![CDATA[<h1 id="시작하기-전에">시작하기 전에</h1>
+<ol>
+<li>Google Cloud 콘솔에서 프로젝트 생성/선택
+<img class="picture" src="/public/img/console.png" alt="relative" /></li>
+<li>
+Google Healthcare API 사용 설정
+<img class="picture" src="/public/img/api_valid.png" alt="relative" /><br />
+<div class="explain">API 및 서비스 &gt; API 및 서비스 사용 설정 &gt; Cloud Healthcare API</div>
+</li>
+<li>Cloud Shell 실행 후 결과 확인</li>
+</ol>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; gcloud auth application-default print-access-token
+</code></pre></div></div>
+
+<h1 id="데이터셋-생성">데이터셋 생성</h1>
+<ol>
+<li>Google Cloud 콘솔에서 Healthcare 검색
+<img class="picture" src="/public/img/console_health.png" alt="relative" />
+</li>
+<li>데이터 세트 만들기 클릭<br />
+<img class="picture" src="/public/img/healthcare_browser.png" alt="relative" /><br />
+<div class="explain">정보 입력 후 만들기</div>
+</li>
+<li>
+데이터 스토어 만들기<br />
+<img class="picture" src="/public/img/make_dataset1.png" alt="relative" /><br />
+<div class="explain">2에서 만든 데이터 셋 클릭 &gt; 데이터 스토어 만들기</div><br />
+<img class="picture" src="/public/img/make_dataset2.png" alt="relative" /><br />
+<div class="explain">
+정보 입력 후 만들기<br />
+FHIR 뷰어 &gt; FHIR 스토어 선택해서 Path 확인 가능
+</div>
+</li>
+</ol>]]></content><author><name></name></author><category term="Health_API" /><summary type="html"><![CDATA[시작하기 전에 Google Cloud 콘솔에서 프로젝트 생성/선택 Google Healthcare API 사용 설정 API 및 서비스 &gt; API 및 서비스 사용 설정 &gt; Cloud Healthcare API Cloud Shell 실행 후 결과 확인 &gt; gcloud auth application-default print-access-token]]></summary></entry></feed>
