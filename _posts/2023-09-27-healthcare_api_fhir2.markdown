@@ -105,3 +105,67 @@ Update는 리소스의 전체가 업데이트가 된다는 점에서 Patch와 �
 </div>
 
 <h3>FHIR 리소스 패치(Patch)</h3>
+<div class ="explain">
+<p>
+JSON 패치 문서에 지정된 작업을 적용하여 리소스의 일부를 업데이트
+</p>
+</div>
+```json
+[
+    {
+      "op": "replace",
+      "path": "/birthDate",
+      "value": "1990-01-01"
+    }
+]
+```
+<div class="explain">
+<p>
+<span class="file">patch.json</span>
+</p>
+</div>
+```console
+> curl -X PATCH \
+    -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+    -H "Content-Type: application/json-patch+json" \
+    -d @patch.json \
+    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient/PATIENT_ID"
+```
+<div class="explain">
+<p>
+Patch도 <b>identifier</b>로 조건을 줘서 조건부 패치 가능
+</p>
+</div>
+
+<h3>FHIR 리소스 삭제(Delete)</h3>
+<h4>-&nbsp;Observation 리소스 삭제</h4>
+```console
+> curl -X DELETE \
+    -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation/OBSERVATION_ID"
+```
+<div class="explain">
+<p>
+Delete도 <b>identifier</b>로 조건을 줘서 조건부 삭제 가능
+</p>
+</div>
+```console
+> curl -X DELETE \
+    -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
+    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/
+    DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation?identifier=my-code-system|ABC-12345"
+```
+
+<h3>추가적인 자료</h3>
+<a href="https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&cloudshell=false">https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&cloudshell=false</a>
+
+# TODO
+Bundle로 리소스 관리하기
+연관된 모든 리소스 검색
+```console
+> curl -X GET \
+     -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
+     "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/
+     DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient/PATIENT_ID/\$everything"
+```
+gcloud 사용

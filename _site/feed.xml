@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-28T15:11:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">Google Cloud Health API-FHIR CRUD(2)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(2)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html"><![CDATA[<h1 id="fhir-리소스-crud2">FHIR 리소스 CRUD(2)</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-28T15:53:57+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">Google Cloud Health API-FHIR CRUD(2)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(2)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html"><![CDATA[<h1 id="fhir-리소스-crud2">FHIR 리소스 CRUD(2)</h1>
 
 <h3>FHIR 리소스 업데이트(Update)</h3>
 <div class="explain">
@@ -94,7 +94,66 @@ Update는 리소스의 전체가 업데이트가 된다는 점에서 Patch와 �
 </p>
 </div>
 
-<h3>FHIR 리소스 패치(Patch)</h3>]]></content><author><name></name></author><category term="Health_API" /><summary type="html"><![CDATA[FHIR 리소스 CRUD(2)]]></summary></entry><entry><title type="html">Google Cloud Health API-FHIR CRUD(1)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(1)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html"><![CDATA[<h1 id="fhir-리소스-crud1">FHIR 리소스 CRUD(1)</h1>
+<h3>FHIR 리소스 패치(Patch)</h3>
+<div class="explain">
+<p>
+JSON 패치 문서에 지정된 작업을 적용하여 리소스의 일부를 업데이트
+</p>
+</div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replace"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/birthDate"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+<div class="explain">
+<p>
+<span class="file">patch.json</span>
+</p>
+</div>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> PATCH <span class="se">\</span>
+<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
+</span><span class="go">    -H "Content-Type: application/json-patch+json" \
+    -d @patch.json \
+    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient/PATIENT_ID"
+</span></code></pre></div></div>
+<div class="explain">
+<p>
+Patch도 <b>identifier</b>로 조건을 줘서 조건부 패치 가능
+</p>
+</div>
+
+<h3>FHIR 리소스 삭제(Delete)</h3>
+<h4>-&nbsp;Observation 리소스 삭제</h4>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
+</span><span class="go">    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation/OBSERVATION_ID"
+</span></code></pre></div></div>
+<div class="explain">
+<p>
+Delete도 <b>identifier</b>로 조건을 줘서 조건부 삭제 가능
+</p>
+</div>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth application-default print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
+</span><span class="go">    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/
+    DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation?identifier=my-code-system|ABC-12345"
+</span></code></pre></div></div>
+
+<h3>추가적인 자료</h3>
+<p><a href="https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;cloudshell=false">https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;cloudshell=false</a></p>
+
+<h1 id="todo">TODO</h1>
+<p>Bundle로 리소스 관리하기
+연관된 모든 리소스 검색</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<span class="gp">     -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth application-default print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
+</span><span class="go">     "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/
+</span><span class="gp">     DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient/PATIENT_ID/\$</span>everything<span class="s2">"
+</span></code></pre></div></div>
+<p>gcloud 사용</p>]]></content><author><name></name></author><category term="Health_API" /><summary type="html"><![CDATA[FHIR 리소스 CRUD(2)]]></summary></entry><entry><title type="html">Google Cloud Health API-FHIR CRUD(1)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(1)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html"><![CDATA[<h1 id="fhir-리소스-crud1">FHIR 리소스 CRUD(1)</h1>
 
 <h3>FHIR 리소스 생성하기(Create)</h3>
 <h4>-&nbsp;<a href="/public/file/Patient.json" download="">Patient.json</a> 파일 다운로드</h4>
