@@ -1,3 +1,5 @@
 # TODO
 -BigQuery 사용
 -OAUth
+
+bundler exec jekyll serve --trace
