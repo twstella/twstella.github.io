@@ -159,13 +159,3 @@ Delete도 <b>identifier</b>로 조건을 줘서 조건부 삭제 가능
 <h3>추가적인 자료</h3>
 <a href="https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&cloudshell=false">https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&cloudshell=false</a>
 
-# TODO
-Bundle로 리소스 관리하기
-연관된 모든 리소스 검색
-```console
-> curl -X GET \
-     -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
-     "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/
-     DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient/PATIENT_ID/\$everything"
-```
-gcloud 사용
