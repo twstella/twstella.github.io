@@ -290,7 +290,7 @@ footer {
 
 .sidebar-footer {
 	margin-top: 80px;
-	font-size: 0.9em;
+	font-size: 1.0em;
 	font-weight: lighter;
 	font-family: 'Nanum Pen Script', cursive,"Roboto";
 	line-height: 1.5;
@@ -334,6 +334,10 @@ footer {
 .explain {
 	font-size: 11pt;
 	font-family: 'Gowun Dodum', sans-serif;
+}
+.album {
+	width: 250px;
+	object-fit: cover;
 }
 @media (max-width: 576px) {
 	article {

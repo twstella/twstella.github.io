@@ -35,6 +35,7 @@ Google Healthcare API 사용 설정
 <img class="picture"  src='{{ "public/img/make_dataset2.png" | relative_url }}' alt='relative'/><br>
 <div class="explain">
 정보 입력 후 만들기<br>
+브라우저 > 데이터 셋 선택 > 데이터 스토어 클릭 > 데이터 저장소 세부 정보나<br>
 FHIR 뷰어 > FHIR 스토어 선택해서 Path 확인 가능
 </div>
 </li>
