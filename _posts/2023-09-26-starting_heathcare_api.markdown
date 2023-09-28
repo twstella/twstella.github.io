@@ -100,7 +100,7 @@ Healthcare API를 사용하기 위해서는 다음과 같이 권한/역할을 �
 ```
 <img  src='{{ "public/img/gcloud11.png" | relative_url }}' alt='relative'>
 <div class="explain">
-아래의 명령어를 입력했을 때 나온 결과를 $(gcloud auth application-default print-access-token) 대신 사용하면 로컬에서 curl 명령어로 통해 리소스 관리 가능
+아래의 명령어를 입력했을 때 나온 결과를 $(gcloud auth application-default print-access-token) 대신 사용하면<br> 로컬에서 curl 명령어로 통해 리소스 관리 가능
 </div>
 ```console
 > gcloud auth print-access-token
