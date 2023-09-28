@@ -3,6 +3,7 @@
 @import url(syntax/monokai.css);
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cardo&display=swap');
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -338,6 +339,12 @@ footer {
 .album {
 	width: 250px;
 	object-fit: cover;
+}
+.example{
+	font-family: 'Cardo', serif;
+}
+.file{
+	font-family: 'Georgia','Noto Serif KR', serif;
 }
 @media (max-width: 576px) {
 	article {
