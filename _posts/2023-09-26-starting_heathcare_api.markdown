@@ -65,8 +65,7 @@ FHIR 뷰어 > FHIR 스토어 선택해서 Path 확인 가능
 <img  src='{{ "public/img/gcloud8.png" | relative_url }}' alt='relative'>
 <div class="explain">
 cmd창에 위와 같이 뜸<br>
-Y를 입력하면<br>
-인터넷 브라우저 창에 아래와 같은 창이 뜸<br>
+Y를 입력하면 인터넷 브라우저 창에 아래와 같은 창이 뜸<br>
 허용을 클릭
 </div>
 <img  src='{{ "public/img/gcloud9.png" | relative_url }}' alt='relative'>

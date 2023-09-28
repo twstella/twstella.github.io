@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-28T21:01:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">Google Cloud Health API-Bundle로 리소스 관리하기</title><link href="http://localhost:4000/health_api/2023/09/28/healthcare_api_fhir3.html" rel="alternate" type="text/html" title="Google Cloud Health API-Bundle로 리소스 관리하기" /><published>2023-09-28T16:07:00+09:00</published><updated>2023-09-28T16:07:00+09:00</updated><id>http://localhost:4000/health_api/2023/09/28/healthcare_api_fhir3</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/28/healthcare_api_fhir3.html"><![CDATA[<h1 id="bundle로-리소스-관리하기">Bundle로 리소스 관리하기</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-28T21:06:35+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">Google Cloud Health API-Bundle로 리소스 관리하기</title><link href="http://localhost:4000/health_api/2023/09/28/healthcare_api_fhir3.html" rel="alternate" type="text/html" title="Google Cloud Health API-Bundle로 리소스 관리하기" /><published>2023-09-28T16:07:00+09:00</published><updated>2023-09-28T16:07:00+09:00</updated><id>http://localhost:4000/health_api/2023/09/28/healthcare_api_fhir3</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/28/healthcare_api_fhir3.html"><![CDATA[<h1 id="bundle로-리소스-관리하기">Bundle로 리소스 관리하기</h1>
 <h3>FHIR Bundle</h3>
 <div class="explain">
 FHIR Bundle을 사용해서 리소스에 대한 생성, 업데이트, 삭제 등의 작업을 한꺼번에 수행 할 수 있다.<br />
@@ -569,8 +569,7 @@ FHIR 뷰어 &gt; FHIR 스토어 선택해서 Path 확인 가능
 <p><img src="/public/img/gcloud8.png" alt="relative" /></p>
 <div class="explain">
 cmd창에 위와 같이 뜸<br />
-Y를 입력하면<br />
-인터넷 브라우저 창에 아래와 같은 창이 뜸<br />
+Y를 입력하면 인터넷 브라우저 창에 아래와 같은 창이 뜸<br />
 허용을 클릭
 </div>
 <p><img src="/public/img/gcloud9.png" alt="relative" />
