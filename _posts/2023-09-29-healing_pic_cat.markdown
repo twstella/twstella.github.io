@@ -14,10 +14,12 @@ category: Photos
 <tr>
 <td><img class = "album" src='{{ "public/img/cat5.jpg" | relative_url }}' alt='relative'></td>
 <td><img class = "album" src='{{ "public/img/cat6.jpg" | relative_url }}' alt='relative'></td>
+<td><img class = "album" src='{{ "public/img/cat9.jpg" | relative_url }}' alt='relative'></td>
 </tr>
 <tr>
 <td><img class = "album" src='{{ "public/img/cat7.jpg" | relative_url }}' alt='relative'></td>
 <td><img class = "album" src='{{ "public/img/cat8.jpg" | relative_url }}' alt='relative'></td>
+<td><img class = "album" src='{{ "public/img/cat10.jpg" | relative_url }}' alt='relative'></td>
 </tr>
 
 </table>
