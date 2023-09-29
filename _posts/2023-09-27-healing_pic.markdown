@@ -24,5 +24,6 @@ category: Photos
 </tr>
 <tr>
 <td><img class = "album" src='{{ "public/img/pic12.jpg" | relative_url }}' alt='relative'></td>
+<td><img class = "album" src='{{ "public/img/pic13.jpg" | relative_url }}' alt='relative'></td>
 </tr>
 </table>
