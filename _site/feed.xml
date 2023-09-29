@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-29T15:59:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">Photos-cats</title><link href="http://localhost:4000/photos/2023/09/29/healing_pic_cat.html" rel="alternate" type="text/html" title="Photos-cats" /><published>2023-09-29T15:46:23+09:00</published><updated>2023-09-29T15:46:23+09:00</updated><id>http://localhost:4000/photos/2023/09/29/healing_pic_cat</id><content type="html" xml:base="http://localhost:4000/photos/2023/09/29/healing_pic_cat.html"><![CDATA[<table>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-29T16:01:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">Photos-cats</title><link href="http://localhost:4000/photos/2023/09/29/healing_pic_cat.html" rel="alternate" type="text/html" title="Photos-cats" /><published>2023-09-29T15:46:23+09:00</published><updated>2023-09-29T15:46:23+09:00</updated><id>http://localhost:4000/photos/2023/09/29/healing_pic_cat</id><content type="html" xml:base="http://localhost:4000/photos/2023/09/29/healing_pic_cat.html"><![CDATA[<table>
 <tr>
 <td><img class="album" src="/public/img/cat1.jpg" alt="relative" /></td>
 <td><img class="album" src="/public/img/cat2.jpg" alt="relative" /></td>
@@ -6,7 +6,6 @@
 <td><img class="album" src="/public/img/cat4.jpg" alt="relative" /></td>
 </tr>
 <tr>
-<td><img class="album" src="/public/img/cat5.jpg" alt="relative" /></td>
 <td><img class="album" src="/public/img/cat6.jpg" alt="relative" /></td>
 <td><img class="album" src="/public/img/cat9.jpg" alt="relative" /></td>
 </tr>
