@@ -2,7 +2,7 @@
 layout: post
 title: "Google Cloud Healthcare API- BigQuery"
 date: 2023-10-02 15:36:23 +0900
-categories:  Health_API
+categories:  ["Health_API","BigQuery"]
 ---
 # Google Cloud BigQuery로 Healthcare data 분석하기
 <ol>

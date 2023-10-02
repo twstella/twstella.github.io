@@ -69,7 +69,7 @@
 	    <li>
 	    	<a class="nav-item nav-li" href="/category/#BigQuery">
 				<span class="name">BigQuery</span>
-				<span class="badge">1</span>
+				<span class="badge">2</span>
 	    	</a>
  		</li>
 	    
@@ -93,8 +93,8 @@
 	<div class="post-content"><ul class="post-list"><li class="post-list-item post-category-BigQuery"><span class="post-date">2023/10/02</span>
 				<a class="post-link" href="/bigquery/2023/10/02/bigQuery.html">
 					Healthcare API- BigQuery
-				</a></li><li class="post-list-item post-category-Health_API"><span class="post-date">2023/10/02</span>
-				<a class="post-link" href="/health_api/2023/10/02/healthcare_bigquery.html">
+				</a></li><li class="post-list-item post-category-Health_APIBigQuery"><span class="post-date">2023/10/02</span>
+				<a class="post-link" href="/health_api/bigquery/2023/10/02/healthcare_bigquery.html">
 					Google Cloud Healthcare API- BigQuery
 				</a></li><li class="post-list-item post-category-Photos"><span class="post-date">2023/09/29</span>
 				<a class="post-link" href="/photos/2023/09/29/healing_pic_cat.html">
@@ -125,10 +125,15 @@
 			$('#category-name').text(hash.substring(0, 1).toUpperCase() + hash.substring(1));
 			let category_class = '.post-category-' + hash;
 			let items = $('.post-list-item').each((i, e) => {
-				if (!$(e).hasClass('post-category-' + hash)) {
-					$(e).hide();
-				} else {
+				if ($(e).hasClass('post-category-' + hash)) {
 					$(e).show();
+				} else {
+					if ($(e).attr('class').includes(hash)&&$(e).attr('class').includes('post-category-')){
+						$(e).show;
+					}
+					else{
+						$(e).hide();
+					}
 				}
 			});
 		}
