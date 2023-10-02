@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-29T16:20:47+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">Photos-cats</title><link href="http://localhost:4000/photos/2023/09/29/healing_pic_cat.html" rel="alternate" type="text/html" title="Photos-cats" /><published>2023-09-29T15:46:23+09:00</published><updated>2023-09-29T15:46:23+09:00</updated><id>http://localhost:4000/photos/2023/09/29/healing_pic_cat</id><content type="html" xml:base="http://localhost:4000/photos/2023/09/29/healing_pic_cat.html"><![CDATA[<table>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-02T16:56:19+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">Healthcare API- BigQuery</title><link href="http://localhost:4000/bigquery/2023/10/02/bigQuery.html" rel="alternate" type="text/html" title="Healthcare API- BigQuery" /><published>2023-10-02T16:20:23+09:00</published><updated>2023-10-02T16:20:23+09:00</updated><id>http://localhost:4000/bigquery/2023/10/02/bigQuery</id><content type="html" xml:base="http://localhost:4000/bigquery/2023/10/02/bigQuery.html"><![CDATA[<h1 id="placeholder">Placeholder</h1>]]></content><author><name></name></author><category term="BigQuery" /><summary type="html"><![CDATA[Placeholder]]></summary></entry><entry><title type="html">Google Cloud Healthcare API- BigQuery</title><link href="http://localhost:4000/health_api/2023/10/02/healthcare_bigquery.html" rel="alternate" type="text/html" title="Google Cloud Healthcare API- BigQuery" /><published>2023-10-02T15:36:23+09:00</published><updated>2023-10-02T15:36:23+09:00</updated><id>http://localhost:4000/health_api/2023/10/02/healthcare_bigquery</id><content type="html" xml:base="http://localhost:4000/health_api/2023/10/02/healthcare_bigquery.html"><![CDATA[<h1 id="google-cloud-bigquery로-healthcare-data-분석하기">Google Cloud BigQuery로 Healthcare data 분석하기</h1>
+<ol>
+<li>Google Cloud BigQuery API 사용 설정<br />
+<div class="explain">API 및 서비스 &gt; API 및 서비스 사용 설정 &gt; BigQuery API</div>
+</li>
+<li>BigQuery 권한 허용</li>
+</ol>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>gcloud projects add-iam-policy-binding PROJECT_ID <span class="se">\ </span>  
+<span class="go">    --member=serviceAccount:service-PROJECT_NUMBER@gcp-sa-healthcare.iam.gserviceaccount.com \  
+    --role=roles/bigquery.dataEditor 
+</span></code></pre></div></div>
+<ol start="3">
+<li>Google Cloud Console에서 BigQuery 검색 후 클릭</li>
+<li>BigQuery 데이터셋 만들기<br /><img class="picture" src="/public/img/bigquery1.png" alt="relative" /><br />
+<div class="explain">BigQuery &gt; SQL 작업공간 &gt; 프로젝트 선택 &gt; 데이터 세트 만들기</div></li>
+<li> 정보 입력 후 만들기<br />
+<img class="picture" src="/public/img/bigquery2.png" alt="relative" /><br />
+</li>
+<li>Healthcare API FHIR 스토리지에서 BigQuery로 데이터 내보내기<br />
+<img class="picture" src="/public/img/bigquery3.png" alt="relative" /><br />
+<div class="explain">Healthcare API &gt; 브라우저 &gt; 데이터 저장소 선택 &gt; 작업 &gt; 내보내기</div>
+<img class="picture" src="/public/img/bigquery5.png" alt="relative" /><br />
+<div class="explain">대상 위치를 BigQuery 테이블로 선택 &gt; 데이터 세트 선택 &gt; 만들기</div>
+</li>
+<li>BigQuery 창에서 데이터 확인<br />
+<img class="picture" src="/public/img/bigquery6.png" alt="relative" />
+</li>
+<li>BigQuery 창에서 쿼리 생성 및 실행 <br />
+<img class="picture" src="/public/img/bigquery7.png" alt="relative" />
+<div class="explain">쿼리를 실행하면 아래에 결과가 출력됨</div>
+</li>
+</ol>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="nv">`PROJECT_NAME.DATA_SET_NAME.TABLE_NAME`</span><span class="p">;</span>
+</code></pre></div></div>
+<p><span class="example">select * from rapid-arbor-000000.fhir_example.Patient</span></p>
+<div class="explain">'' 대신 ``이 사용됨</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">address</span><span class="p">[</span><span class="n">SAFE_OFFSET</span><span class="p">(</span><span class="mi">0</span><span class="p">)].</span><span class="n">city</span><span class="p">,</span><span class="n">birthDate</span><span class="p">,</span> <span class="n">name</span><span class="p">[</span><span class="n">SAFE_OFFSET</span><span class="p">(</span><span class="mi">0</span><span class="p">)].</span><span class="n">family</span><span class="p">,</span> <span class="n">name</span><span class="p">[</span><span class="n">SAFE_OFFSET</span><span class="p">(</span><span class="mi">0</span><span class="p">)].</span><span class="n">given</span> 
+<span class="k">FROM</span> <span class="nv">`rapid-arbor-395501.fhir_example.Patient`</span><span class="p">;</span>
+</code></pre></div></div>
+<div class="explain">Array 타입인 열에 대해서는 특별한 처리가 필요한 것으로 보임</div>]]></content><author><name></name></author><category term="Health_API" /><summary type="html"><![CDATA[Google Cloud BigQuery로 Healthcare data 분석하기 Google Cloud BigQuery API 사용 설정 API 및 서비스 &gt; API 및 서비스 사용 설정 &gt; BigQuery API BigQuery 권한 허용 &gt; gcloud projects add-iam-policy-binding PROJECT_ID \   --member=serviceAccount:service-PROJECT_NUMBER@gcp-sa-healthcare.iam.gserviceaccount.com \  --role=roles/bigquery.dataEditor Google Cloud Console에서 BigQuery 검색 후 클릭 BigQuery 데이터셋 만들기 BigQuery &gt; SQL 작업공간 &gt; 프로젝트 선택 &gt; 데이터 세트 만들기 정보 입력 후 만들기 Healthcare API FHIR 스토리지에서 BigQuery로 데이터 내보내기 Healthcare API &gt; 브라우저 &gt; 데이터 저장소 선택 &gt; 작업 &gt; 내보내기 대상 위치를 BigQuery 테이블로 선택 &gt; 데이터 세트 선택 &gt; 만들기 BigQuery 창에서 데이터 확인 BigQuery 창에서 쿼리 생성 및 실행 쿼리를 실행하면 아래에 결과가 출력됨 select * from `PROJECT_NAME.DATA_SET_NAME.TABLE_NAME`; select * from rapid-arbor-000000.fhir_example.Patient '' 대신 ``이 사용됨 SELECT address[SAFE_OFFSET(0)].city,birthDate, name[SAFE_OFFSET(0)].family, name[SAFE_OFFSET(0)].given FROM `rapid-arbor-395501.fhir_example.Patient`; Array 타입인 열에 대해서는 특별한 처리가 필요한 것으로 보임]]></summary></entry><entry><title type="html">Photos-cats</title><link href="http://localhost:4000/photos/2023/09/29/healing_pic_cat.html" rel="alternate" type="text/html" title="Photos-cats" /><published>2023-09-29T15:46:23+09:00</published><updated>2023-09-29T15:46:23+09:00</updated><id>http://localhost:4000/photos/2023/09/29/healing_pic_cat</id><content type="html" xml:base="http://localhost:4000/photos/2023/09/29/healing_pic_cat.html"><![CDATA[<table>
 <tr>
 <td><img class="album" src="/public/img/cat1.jpg" alt="relative" /></td>
 <td><img class="album" src="/public/img/cat2.jpg" alt="relative" /></td>
@@ -229,7 +268,152 @@ data 필드는
 <td><img class="album" src="/public/img/pic12.jpg" alt="relative" /></td>
 <td><img class="album" src="/public/img/pic13.jpg" alt="relative" /></td>
 </tr>
-</table>]]></content><author><name></name></author><category term="Photos" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Google Cloud Health API-FHIR CRUD(1)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(1)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html"><![CDATA[<h1 id="fhir-리소스-crud1">FHIR 리소스 CRUD(1)</h1>
+</table>]]></content><author><name></name></author><category term="Photos" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Google Cloud Health API-FHIR CRUD(2)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(2)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html"><![CDATA[<h1 id="fhir-리소스-crud2">FHIR 리소스 CRUD(2)</h1>
+
+<h3>FHIR 리소스 업데이트(Update)</h3>
+<div class="explain">
+Update는 리소스의 전체가 업데이트가 된다는 점에서 Patch와 차이가 있다.<br />
+업데이트 내용을 담고 있는 리소스와 업데이트하는 리소스들은 동일한 id를 가지고 있어야 한다.
+</div>
+<h4>-&nbsp;Observation 리소스 업데이트</h4>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Observation"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OBSERVATION_ID"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"final"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subject"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patient/PATIENT_ID"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"effectiveDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-code-system"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC-12345"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://loinc.org"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8867-4"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heart rate"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"valueQuantity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bpm"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"encounter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Encounter/ENCOUNTER_ID"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<div class="explain">
+<p><span class="file">request.json</span>
+</p>
+</div>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
+</span><span class="gp">    -H "Content-Type: application/json;</span><span class="w"> </span><span class="s2">charset=utf-8"</span> <span class="se">\</span>
+<span class="go">    -d @request.json \
+    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation/OBSERVATION_ID"
+</span></code></pre></div></div>
+<h4>-&nbsp;조건부 Patient 리소스 업데이트</h4>
+<div class="explain">
+<p>조건부 업데이트는 한 번에 하나의 FHIR 리소스에만 적용 가능<br />
+조건을 일치하는 리소스가 1개 초과로 존재하면 <b>412 Precondition Failed</b>오류가 반환됨<br />
+<b>identifier</b>를 배타적으로 사용하여 조건과 일치하는 FHIR 리소스 확인
+</p>
+</div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"use"</span><span class="p">:</span><span class="w"> </span><span class="s2">"official"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith123"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"given"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Darcy0000"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"birthDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PATIENT_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"identifier"</span><span class="p">:[{</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="s2">"104"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system"</span><span class="p">:</span><span class="s2">"my_code_system"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+    </span><span class="p">,</span><span class="w">
+    </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patient"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<div class="explain">
+<p>
+<span class="file">Patient_new.json</span>
+</p>
+</div>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
+</span><span class="gp">    -H "Content-Type: application/json;</span><span class="w"> </span><span class="s2">charset=utf-8"</span> <span class="se">\</span>
+<span class="go">    -d @Patient_new.json \
+"https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient?identifier=my_code_system|104"
+
+</span></code></pre></div></div>
+<div class="explain">
+<p>
+<b>identifier</b>로 조건을 줌<br />
+</p>
+</div>
+
+<h3>FHIR 리소스 패치(Patch)</h3>
+<div class="explain">
+<p>
+JSON 패치 문서에 지정된 작업을 적용하여 리소스의 일부를 업데이트
+</p>
+</div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replace"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/birthDate"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+<div class="explain">
+<p>
+<span class="file">patch.json</span>
+</p>
+</div>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> PATCH <span class="se">\</span>
+<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
+</span><span class="go">    -H "Content-Type: application/json-patch+json" \
+    -d @patch.json \
+    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient/PATIENT_ID"
+</span></code></pre></div></div>
+<div class="explain">
+<p>
+Patch도 <b>identifier</b>로 조건을 줘서 조건부 패치 가능
+</p>
+</div>
+
+<h3>FHIR 리소스 삭제(Delete)</h3>
+<h4>-&nbsp;Observation 리소스 삭제</h4>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
+</span><span class="go">    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation/OBSERVATION_ID"
+</span></code></pre></div></div>
+<div class="explain">
+<p>
+Delete도 <b>identifier</b>로 조건을 줘서 조건부 삭제 가능
+</p>
+</div>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth application-default print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
+</span><span class="go">    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/
+    DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation?identifier=my-code-system|ABC-12345"
+</span></code></pre></div></div>
+
+<h3>추가적인 자료</h3>
+<p><a href="https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;cloudshell=false">https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;cloudshell=false</a></p>]]></content><author><name></name></author><category term="Health_API" /><summary type="html"><![CDATA[FHIR 리소스 CRUD(2)]]></summary></entry><entry><title type="html">Google Cloud Health API-FHIR CRUD(1)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(1)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html"><![CDATA[<h1 id="fhir-리소스-crud1">FHIR 리소스 CRUD(1)</h1>
 
 <h3>FHIR 리소스 생성하기(Create)</h3>
 <h4>-&nbsp;<a href="/public/file/Patient.json" download="">Patient.json</a> 파일 다운로드</h4>
@@ -382,152 +566,7 @@ Cloud Healthcare API v1에서는 <b>identifier</b> 검색 매개변수를 배타
 <div class="explain">
 <p>family name이 Smith인 Patient 리소스가 Json 형태로 응답으로 리턴됨</p>
 </div>
-<p><img class="picture" src="/public/img/read.png" alt="relative" /><br /></p>]]></content><author><name></name></author><category term="Health_API" /><summary type="html"><![CDATA[FHIR 리소스 CRUD(1)]]></summary></entry><entry><title type="html">Google Cloud Health API-FHIR CRUD(2)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(2)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html"><![CDATA[<h1 id="fhir-리소스-crud2">FHIR 리소스 CRUD(2)</h1>
-
-<h3>FHIR 리소스 업데이트(Update)</h3>
-<div class="explain">
-Update는 리소스의 전체가 업데이트가 된다는 점에서 Patch와 차이가 있다.<br />
-업데이트 내용을 담고 있는 리소스와 업데이트하는 리소스들은 동일한 id를 가지고 있어야 한다.
-</div>
-<h4>-&nbsp;Observation 리소스 업데이트</h4>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Observation"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OBSERVATION_ID"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"final"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"subject"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patient/PATIENT_ID"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"effectiveDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-code-system"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC-12345"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://loinc.org"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8867-4"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heart rate"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"valueQuantity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bpm"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"encounter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Encounter/ENCOUNTER_ID"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-<div class="explain">
-<p><span class="file">request.json</span>
-</p>
-</div>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> PUT <span class="se">\</span>
-<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
-</span><span class="gp">    -H "Content-Type: application/json;</span><span class="w"> </span><span class="s2">charset=utf-8"</span> <span class="se">\</span>
-<span class="go">    -d @request.json \
-    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation/OBSERVATION_ID"
-</span></code></pre></div></div>
-<h4>-&nbsp;조건부 Patient 리소스 업데이트</h4>
-<div class="explain">
-<p>조건부 업데이트는 한 번에 하나의 FHIR 리소스에만 적용 가능<br />
-조건을 일치하는 리소스가 1개 초과로 존재하면 <b>412 Precondition Failed</b>오류가 반환됨<br />
-<b>identifier</b>를 배타적으로 사용하여 조건과 일치하는 FHIR 리소스 확인
-</p>
-</div>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"use"</span><span class="p">:</span><span class="w"> </span><span class="s2">"official"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith123"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"given"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="s2">"Darcy0000"</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"birthDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PATIENT_ID"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"identifier"</span><span class="p">:[{</span><span class="w">
-      </span><span class="nl">"value"</span><span class="p">:</span><span class="s2">"104"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"system"</span><span class="p">:</span><span class="s2">"my_code_system"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-    </span><span class="p">,</span><span class="w">
-    </span><span class="nl">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patient"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-<div class="explain">
-<p>
-<span class="file">Patient_new.json</span>
-</p>
-</div>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> PUT <span class="se">\</span>
-<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
-</span><span class="gp">    -H "Content-Type: application/json;</span><span class="w"> </span><span class="s2">charset=utf-8"</span> <span class="se">\</span>
-<span class="go">    -d @Patient_new.json \
-"https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient?identifier=my_code_system|104"
-
-</span></code></pre></div></div>
-<div class="explain">
-<p>
-<b>identifier</b>로 조건을 줌<br />
-</p>
-</div>
-
-<h3>FHIR 리소스 패치(Patch)</h3>
-<div class="explain">
-<p>
-JSON 패치 문서에 지정된 작업을 적용하여 리소스의 일부를 업데이트
-</p>
-</div>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replace"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/birthDate"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre></div></div>
-<div class="explain">
-<p>
-<span class="file">patch.json</span>
-</p>
-</div>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> PATCH <span class="se">\</span>
-<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
-</span><span class="go">    -H "Content-Type: application/json-patch+json" \
-    -d @patch.json \
-    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient/PATIENT_ID"
-</span></code></pre></div></div>
-<div class="explain">
-<p>
-Patch도 <b>identifier</b>로 조건을 줘서 조건부 패치 가능
-</p>
-</div>
-
-<h3>FHIR 리소스 삭제(Delete)</h3>
-<h4>-&nbsp;Observation 리소스 삭제</h4>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
-<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
-</span><span class="go">    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation/OBSERVATION_ID"
-</span></code></pre></div></div>
-<div class="explain">
-<p>
-Delete도 <b>identifier</b>로 조건을 줘서 조건부 삭제 가능
-</p>
-</div>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
-<span class="gp">    -H "Authorization: Bearer $</span><span class="o">(</span>gcloud auth application-default print-access-token<span class="o">)</span><span class="s2">" </span><span class="se">\</span><span class="s2">
-</span><span class="go">    "https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/
-    DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation?identifier=my-code-system|ABC-12345"
-</span></code></pre></div></div>
-
-<h3>추가적인 자료</h3>
-<p><a href="https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;cloudshell=false">https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;cloudshell=false</a></p>]]></content><author><name></name></author><category term="Health_API" /><summary type="html"><![CDATA[FHIR 리소스 CRUD(2)]]></summary></entry><entry><title type="html">Google Cloud Health API-시작하기</title><link href="http://localhost:4000/health_api/2023/09/26/starting_heathcare_api.html" rel="alternate" type="text/html" title="Google Cloud Health API-시작하기" /><published>2023-09-26T22:46:23+09:00</published><updated>2023-09-26T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/26/starting_heathcare_api</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/26/starting_heathcare_api.html"><![CDATA[<h1 id="시작하기-전에">시작하기 전에</h1>
+<p><img class="picture" src="/public/img/read.png" alt="relative" /><br /></p>]]></content><author><name></name></author><category term="Health_API" /><summary type="html"><![CDATA[FHIR 리소스 CRUD(1)]]></summary></entry><entry><title type="html">Google Cloud Health API-시작하기</title><link href="http://localhost:4000/health_api/2023/09/26/starting_heathcare_api.html" rel="alternate" type="text/html" title="Google Cloud Health API-시작하기" /><published>2023-09-26T22:46:23+09:00</published><updated>2023-09-26T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/26/starting_heathcare_api</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/26/starting_heathcare_api.html"><![CDATA[<h1 id="시작하기-전에">시작하기 전에</h1>
 <ol>
 <li>Google Cloud 콘솔에서 프로젝트 생성/선택
 <img class="picture" src="/public/img/console.png" alt="relative" /></li>
