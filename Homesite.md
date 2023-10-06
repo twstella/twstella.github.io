@@ -108,3 +108,5 @@ permalink: /about/
 </li>
 </ul>
 </p>
+<b>Research Abstract</b>
+<iframe src='{{ "public/file/research.pdf" | relative_url }}'  width="100%" height="600px"></iframe>
