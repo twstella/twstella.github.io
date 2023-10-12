@@ -28,17 +28,9 @@
 			let hash = window.location.hash.substring(1);
 			$('#category-name').text(hash.substring(0, 1).toUpperCase() + hash.substring(1));
 			let category_class = '.post-category-' + hash;
+			console.log(hash);
 			let items = $('.post-list-item').each((i, e) => {
-				if ($(e).hasClass('post-category-' + hash)) {
-					$(e).show();
-				} else {
-					if ($(e).attr('class').includes('post-category-')){
-						$(e).show;
-					}
-					else{
-						$(e).hide();
-					}
-				}
+				$(e).hide;
 			});
 		}
 	}
