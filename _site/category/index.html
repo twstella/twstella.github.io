@@ -135,7 +135,14 @@
 			let category_class = '.post-category-' + hash;
 			console.log(hash);
 			let items = $('.post-list-item').each((i, e) => {
-				$(e).hide;
+				console.log(i);
+				console.log($(e).attr('class'))
+				if($(e).attr('class').includes(hash)){
+					$(e).show();
+				}
+				else{
+					$(e).hide();
+				}
 			});
 		}
 	}
