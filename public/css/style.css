@@ -312,8 +312,8 @@ footer {
 	font-family: 'Georgia','Noto Serif KR', serif;
 }
 .frame {
-	width: 200px;
-    height: 200px; 
+	width: 220px;
+    height: 220px; 
     border-radius: 70%;
     overflow: hidden;
 }

@@ -22,6 +22,11 @@ permalink: /about/
             <li>난초 4년 전액 장학생, 수석졸업(<i>Summa Cum Laude</i>)</li>
         </ul>
     </li>
+    <li>빅데이터 혁신 융합 대학 (인턴)
+    <ul>
+    <li>2023.10.04~current</li>
+    </ul>
+    </li>
 </ul>
 </p>
 </div>
@@ -109,4 +114,11 @@ permalink: /about/
 </ul>
 </p>
 <b>Research Abstract</b>
+<ul>
+<li> 전공 소개서
 <iframe src='{{ "public/file/research.pdf" | relative_url }}'  width="100%" height="600px"></iframe>
+</li>
+<li> 전공 포스터
+<iframe src='{{ "public/file/research_poster.pdf" | relative_url }}'  width="100%" height="1200px"></iframe>
+</li>
+</ul>
