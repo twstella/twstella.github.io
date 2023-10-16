@@ -14,12 +14,14 @@ permalink: /about/
         <ul>
             <li>M.S in Dept. of Computer Science and Engineering</li>
             <li>Advisor: Kwangkeun Yi</li>
+            <li>3.6/4.3</li>
         </ul>
     </li>
     <li>Sungshin Women's University
         <ul>
             <li>B.S in Dept. if Information System Engineering</li>
             <li>난초 4년 전액 장학생, 수석졸업(<i>Summa Cum Laude</i>)</li>
+            <li>4.4/4.5</li>
         </ul>
     </li>
     <li>빅데이터 혁신 융합 대학 (인턴)
@@ -67,10 +69,13 @@ permalink: /about/
 <p>
 <p>
 <h4><b>Extracurricular Activity</b></h4>
-학회 참석
+<ul>
+<li> 학회 참석
 <ul>
     <li> PLDI 2022 (San Diego, CA, USA)</li>
 </ul>
+</li>
+<li>
 외부 강의 수강
 <ul>
     <li> Rust Winter School
@@ -87,23 +92,34 @@ permalink: /about/
         </ul>
     </li>
 </ul>
-프로그래밍 대회
+</li>
+<li>프로그래밍 대회
 <ul>
 <li>ACM-ICPC 지역 예선: 2020, 2019, 2018</li>
 <li>UCPC 예선, 본선: 2020</li>
 <li>SCPC 예선: 2020</li>
 <li>카카오 코드 페스티벌 예선: 2018</li>
 </ul>
+</li>
+<li>
 해외 거주
 <ul>
 <li>미국 오스틴 텍사스: 2003.07 ~ 2005.01, 2008.12 ~ 2010.01
 </li>
 </ul>
+</li>
+</ul>
 </p>
 <b>공인영어성적</b>
 <ul>
-<li>Opic: IH</li>
-<li>Teps: 455 </li>
+<li>Opic: IH (2022.07)</li>
+<li>Teps: 455 (2023.06)</li>
+</ul>
+</p>
+<p>
+<b>Papers</b>
+<ul>
+<li>디지털 포렌식 소프트웨어의 처리되지 않은 예외 분석에 있어서 타입 정보 기반 정교화 - (최종심사 통과/최종본 작성 중)</li>
 </ul>
 </p>
 <p>
