@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HL7 FHIR"
+title: "HL7 FHIR(1)"
 date: 2023-10-06 09:36:23 +0900
 category:  "HL7_FHIR"
 ---
@@ -8,9 +8,10 @@ category:  "HL7_FHIR"
 <img class="logo"  src='{{ "public/img/FHIR_LOGO.png" | relative_url }}' alt='relative'/>
 # HL7 FHIR 란?
 
-<div class="explain">FHIR (Fast Healthcare Interoperability Resources)는 HL7 (Health Level Seven International)에서 만든 의료정보표준으로 다양한 의료 기관에서 의료 정보를 교환하는 것을 위한 API의 표준이다. FHIR에서는 의료정보들을 "리소스"라는 데이터 블록을 단위로 작업을 수행한다. 리소스에는 환자 리소스, 증상 리소스, 방문 리소스, 처방 리소스 등의 의료정보에 대한 리소스를 포함하여 여러 리소스들을 한 번에 관리하기 위한 번들 리소스 등이 있다. RestAPI 인터페이스를 사용하여 웹을 통하여 데이터를 공유하기 용이하다.
+<div class="explain">FHIR (Fast Healthcare Interoperability Resources)는 HL7 (Health Level Seven International)에서 만든 의료정보표준으로 다양한 의료 기관에서 의료 정보를 교환하는 것을 위한 API의 표준이다. <br> FHIR에서는 의료정보들을 "리소스"라는 데이터 블록을 단위로 작업을 수행한다. 리소스에는 환자 리소스, 증상 리소스, 방문 리소스, 처방 리소스 등의 의료정보에 대한 리소스를 포함하여 여러 리소스들을 한 번에 관리하기 위한 번들 리소스 등이 있다. FHIR의 리소스들은 파레토 법칙을 따라 의료 데이터들의 80%에 대해서는 표준을 정의하고 있고 나머지 20%의 의료 데이터에 대해서는 stakeholder의 필요에 따라 유연하게 사용할 수 있게 지원하여 시스템의 환경에 맞게 융통성 있게 쓰일 수 있다.<br> 또한, RestAPI 인터페이스를 사용하여 웹을 통하여 데이터를 공유하기 용이하다. <br>
 HL7 FHIR 공식 홈페이지는 아래 링크에 있다.
 </div>
 <a href = "https://hl7.org/fhir/">https://hl7.org/fhir/</a>
 
 <h3>FHIR 리소스 생성하기(Create)</h3>
+<h3>FHIR 리소스 출력하기</h3>
