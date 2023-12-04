@@ -35,7 +35,7 @@ permalink: /about/
 <p>
 <h4><b>Research Interest</b></h4>
 <ul>
-<li>Medical Information: Artificial Intelligence, Big Data Anlysis, HL7 FHIR</li>
+<li>Medical Information: Artificial Intelligence, LLM, Big Data Anlysis, HL7 FHIR</li>
 <li>Static Analysis</li>
 </ul>
 </p>
@@ -73,6 +73,11 @@ permalink: /about/
 <li> 학회 참석
 <ul>
     <li> PLDI 2022 (San Diego, CA, USA)</li>
+</ul>
+</li>
+<li> 수상 내역
+<ul>
+    <li> 최우수 졸업(2021.02)</li>
 </ul>
 </li>
 <li>

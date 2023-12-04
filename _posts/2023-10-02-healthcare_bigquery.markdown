@@ -15,6 +15,9 @@ categories:  ["Health_API","BigQuery"]
 > gcloud projects add-iam-policy-binding PROJECT_ID \   
     --member=serviceAccount:service-PROJECT_NUMBER@gcp-sa-healthcare.iam.gserviceaccount.com \  
     --role=roles/bigquery.dataEditor 
+> gcloud projects add-iam-policy-binding PROJECT_ID \           
+    --member=serviceAccount:service-PROJECT_NUMBER@gcp-sa-healthcare.iam.gserviceaccount.com \
+    --role=roles/bigquery.jobUser 
 ```
 <ol start="3">
 <li>Google Cloud Console에서 BigQuery 검색 후 클릭</li>

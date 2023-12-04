@@ -1,5 +1,10 @@
 # TODO
--BigQuery 사용
--OAUth
+-ToT
+-grpc
+-Spring
+-Langchain
+-RAG
+-Flutter
+-Bigdata Intern
 
-bundler exec jekyll serve --trace
+> bundler exec jekyll serve --trace

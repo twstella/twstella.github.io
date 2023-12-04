@@ -15,6 +15,7 @@ category: Photos
 <td><img class = "album" src='{{ "public/img/pic5.jpg" | relative_url }}' alt='relative'></td>
 <td><img class = "album" src='{{ "public/img/pic6.jpg" | relative_url }}' alt='relative'></td>
 <td><img class = "album" src='{{ "public/img/pic7.jpg" | relative_url }}' alt='relative'></td>
+<td><img class = "album" src='{{ "public/img/pic17.jpg" | relative_url }}' alt='relative'></td>
 </tr>
 <tr>
 <td><img class = "album" src='{{ "public/img/pic8.jpg" | relative_url }}' alt='relative'></td>
@@ -25,5 +26,12 @@ category: Photos
 <tr>
 <td><img class = "album" src='{{ "public/img/pic12.jpg" | relative_url }}' alt='relative'></td>
 <td><img class = "album" src='{{ "public/img/pic13.jpg" | relative_url }}' alt='relative'></td>
+<td><img class = "album" src='{{ "public/img/pic14.jpg" | relative_url }}' alt='relative'></td>
+<td><img class = "album" src='{{ "public/img/pic15.jpg" | relative_url }}' alt='relative'></td>
+</tr>
+<tr>
+<td><img class = "album" src='{{ "public/img/pic16.jpg" | relative_url }}' alt='relative'></td>
+<td><img class = "album" src='{{ "public/img/pic18.jpg" | relative_url }}' alt='relative'></td>
+<td><img class = "album" src='{{ "public/img/pic19.jpg" | relative_url }}' alt='relative'></td>
 </tr>
 </table>
