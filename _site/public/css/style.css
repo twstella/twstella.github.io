@@ -94,7 +94,7 @@ code {
 }
 
 .sidebar {
-	/*position: fixed;*/
+	/*position: sticky;*/
 	display: flex;
 	flex-flow: column nowrap;
 	flex: 0 0 220px;
@@ -106,6 +106,7 @@ code {
 
 .sidebar-item {
 	display: block;
+	position: sticky;
 }
 
 .sidebar ul {
@@ -312,8 +313,8 @@ footer {
 	font-family: 'Georgia','Noto Serif KR', serif;
 }
 .frame {
-	width: 230px;
-    height: 230px; 
+	width: 200px;
+    height: 200px; 
     border-radius: 70%;
     overflow: hidden;
 }
@@ -352,7 +353,7 @@ footer {
 }
 @media (max-width: 576px) {
 	article {
-		font-size: 0.9em;
+		font-size: 0.6em;
 		line-height: 1.5;
 	}
 
@@ -367,7 +368,6 @@ footer {
 		font-size: 0.8em;
 		flex: 0 0 auto;
 		flex-flow: row nowrap;
-		height: auto;
 	}
 
 	.sidebar-nav {

@@ -1,137 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-04T14:48:18+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(1)</title><link href="http://localhost:4000/grpc/intern/2023/12/04/grpc1.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(1)" /><published>2023-12-04T10:31:23+09:00</published><updated>2023-12-04T10:31:23+09:00</updated><id>http://localhost:4000/grpc/intern/2023/12/04/grpc1</id><content type="html" xml:base="http://localhost:4000/grpc/intern/2023/12/04/grpc1.html">&lt;h1 id=&quot;grpc란&quot;&gt;gRPC란?&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-04T16:53:35+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain.html">&lt;h1 id=&quot;tottree-of-thoughts&quot;&gt;ToT(Tree of Thoughts)&lt;/h1&gt;
+&lt;div class=&quot;explain&quot;&gt;
+&lt;/div&gt;
+&lt;h4&gt;출처&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@astropomeai/implementing-the-tree-of-thoughts-in-langchains-chain-f2ebc5864fac&quot;&gt;Implementing the Tree of Thoughts in LangChain’s Chain&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="LLM" /><category term="Intern" /><summary type="html">ToT(Tree of Thoughts) 출처 Implementing the Tree of Thoughts in LangChain’s Chain</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 ELP 개발 - asyncio</title><link href="http://localhost:4000/python/intern/2023/12/04/grpc3.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 ELP 개발 - asyncio" /><published>2023-12-04T15:04:23+09:00</published><updated>2023-12-04T15:04:23+09:00</updated><id>http://localhost:4000/python/intern/2023/12/04/grpc3</id><content type="html" xml:base="http://localhost:4000/python/intern/2023/12/04/grpc3.html">&lt;h1 id=&quot;python-asyncio&quot;&gt;Python asyncio&lt;/h1&gt;
+&lt;h3&gt;동기와 비동기&lt;/h3&gt;
+&lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/async.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;explain&quot;&gt;
+동기(synchronous)는 특정 작업이 끝나면 다음 작업을 처리하고 비동기(asynchronous)는 여러 작업을 처리하도록 예약항 뒤 작업이 끝나면 결과를 받는 방식
+&lt;/div&gt;
+&lt;h3&gt;asyncio 사용하기&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;
-RPC(Remote Procedure Call)
-&lt;div class=&quot;explain&quot;&gt;RPC는 분산 컴퓨팅 시스템에서 사용하는 프로토콜로 한 프로그램 또는 프로세스가 다른 컴퓨터나 다른 주소 공간에 위차한 프로시저(서브루틴이나 메소드)를 로컬 프로시저 호출처럼 호출할 수 있게 함. RPC는 프로그램이 네트워크를 통해 서로 통신하고 서비스를 요청할 수 있게 하며, 분산 시스템과 서버-클라이언트 구조의 기본 개념 중 하나.&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-Protocol Buffer
+&lt;li&gt;네이티브 코루틴 정의(async def)&lt;/li&gt;
 &lt;div class=&quot;explain&quot;&gt;
-구글에서 개발한 언어독립적 이진 직렬화 형식(language-agnostic binary serialization format)으로 구조화된 데이터를 효율적이고 간결하게(compact) 직렬화한다. 
+asyncio.get_event_loop로 이벤트 루프를 얻을 수 있고 asyncio.run_until_complete()로 코루틴 객체를 넣어 네이티브 코루틴이 이벤트 루프에서 실행될 수 있도록 예약할 수 있음
 &lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-IDL(Interface Definition Language)
-&lt;div class=&quot;explain&quot;&gt;
-IDL은 소프트웨어 구성 요소의 인터페이스를 정의하는데 사용되는 언어 또는 명세로, 특히 분산시스템과 원격통신에서 사용됨. 원격 액세스나 다른 컴포넌트 간의 통신에서 메소드, 데이터의 구조 등을 정의하는데 사용됨. 
-&lt;/div&gt;
-&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/GRPC.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;asyncio&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;func_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;
+
+
+&lt;span class=&quot;n&quot;&gt;loop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;asyncio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_event_loop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run_until_complete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;func_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;네이티브 코루틴 실행(await)&lt;/li&gt;
 &lt;div class=&quot;explain&quot;&gt;
-서버 측에서는 서버는 인터페이스를 구현하고 클라이언트의 호출을 처리하기 위해 gRPC 서버를 실행하고 클라이언트 측에서는 클라이언트가 서버와 동일한 메소드를 제공하는 스텁을 가지고 있음. gRPC 클라이언트와 서버는 다양한 환경에서 실행되고 서로 통신할 수 있고 gRPC 지원 언어 중 어느 것으로 개발할 수 있음.
+await 뒤에 코루틴 객체나 Future 객체, Task 객체 등이 오면 해당 객체가 끝날까지 기다린 후 결과를 반환받을 수 있음. 단, await는 코루틴 안에서만 사용할 수 있음.&lt;br /&gt;
+Future 객체 - 미래에 할 일을 표현하는 클래스로 할 일을 취소하거나 상태 확인, 완료와 결과 설정에 사용&lt;br /&gt;
+Task 객체 - Future의 파생 클래스이며 Future의 기능들과 코루틴 객체를 포함하고 있음. 코루틴의 실행 취소, 상태 확인, 완료 및 결과 설정에 사용.
 &lt;/div&gt;
-&lt;h3&gt;gRPC로 Server Client 프로그램 개발하기&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt; gRPC 설치하기
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;grpcio grpcio-tools
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt; Protocol Buffer 생성
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// The greeting service definition.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;service&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Greeter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// Sends a greeting&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;rpc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SayHello&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloReply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// Sends another greeting&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;rpc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SayHelloAgain&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloReply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// The request message containing the user&apos;s name.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HelloRequest&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// The response message containing the greetings&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HelloReply&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; grpc_tools.protoc &lt;span class=&quot;nt&quot;&gt;-I&lt;/span&gt;../../protos &lt;span class=&quot;nt&quot;&gt;--python_out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--pyi_out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--grpc_python_out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; ../../protos/FILE_NAME.proto
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ol start=&quot;3&quot;&gt;
-&lt;li&gt; Server 구현
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;concurrent&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;futures&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;logging&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;grpc&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;helloworld_pb2&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Greeter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GreeterServicer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SayHello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;helloworld_pb2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloReply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello, %s!&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;50051&quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;futures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ThreadPoolExecutor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_workers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_GreeterServicer_to_server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Greeter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_insecure_port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;[::]:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Server started, listening on &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wait_for_termination&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basicConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;li&gt;yield&lt;/li&gt;
 &lt;div class=&quot;explain&quot;&gt;
-서버 측에서는 서버는 클라이언트의 요청을 처리하기 위한 메소드들을 정의하고 구현함. gRPC 인프라스트럭쳐는 들어오는 요청을 decode하고 서비스 메소드를 실행한 뒤 서버 응답을 encode함.
+return은 결과 값을 한 번만 반환하지만 yield는 결과 값을 여러번에 거쳐서 반환한다.
 &lt;/div&gt;
-
-&lt;ol start=&quot;4&quot;&gt;
-&lt;li&gt; Client 구현
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;__future__&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_function&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;logging&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;grpc&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;helloworld_pb2&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# NOTE(gRPC Python Team): .close() is possible on a channel and should be
-&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# used in circumstances in which the with statement does not fit the needs
-&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# of the code.
-&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Will try to greet world ...&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insecure_channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:50051&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;stub&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GreeterStub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SayHello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;helloworld_pb2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;you&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Greeter client received: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basicConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;li&gt;제너레이터&lt;/li&gt;
 &lt;div class=&quot;explain&quot;&gt;
-클라이언트 측에서는 stub이라는 로컬 객체가 서비스롸 동일한 메소드를 구현하고 있음. 클라이언트는 이 로컬 객체로 메소드를 호출하면됨. 메소드를 호출하면 맞는 프로토콜 메시지 타입으로 호출 인자들이 wrap되고 서버로 요청이 보내짐. 그리고 서버의 프로토콜 버퍼 응답을 받음.
+데이터를 미리 만들어 놓지 않고 필요할 때마나 하나씩 만들어서 사용하는 객체. 
 &lt;/div&gt;
-
-&lt;ol start=&quot;5&quot;&gt;
-&lt;li&gt; Server와 Client 실행
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python hello_world_server.py
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python hello_world_client.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3&gt;Synchronous VS Asynchronous&lt;/h3&gt;
+&lt;li&gt;async with&lt;/li&gt;
 &lt;div class=&quot;explain&quot;&gt;
-응답이 서버로부터 도착할 때까지 차단되는 동기식 RPC 호출은 RPC가 추구하는 프로시저 호출의 가장 가까운 추상화임. 반면에 네트워크는 본질적으로 많은 경우 비동기적이며 현재 실행 중인 쓰레드를 차단하기 않고 RPC를 시작할 수 있는 것이 유용함. gRPC 지원 언어의 대부분은 동기 방식과 비동기 방식 양쪽 모두를 지원함.
-&lt;/div&gt;</content><author><name></name></author><category term="GRPC" /><category term="Intern" /><summary type="html">gRPC란? RPC(Remote Procedure Call) RPC는 분산 컴퓨팅 시스템에서 사용하는 프로토콜로 한 프로그램 또는 프로세스가 다른 컴퓨터나 다른 주소 공간에 위차한 프로시저(서브루틴이나 메소드)를 로컬 프로시저 호출처럼 호출할 수 있게 함. RPC는 프로그램이 네트워크를 통해 서로 통신하고 서비스를 요청할 수 있게 하며, 분산 시스템과 서버-클라이언트 구조의 기본 개념 중 하나. Protocol Buffer 구글에서 개발한 언어독립적 이진 직렬화 형식(language-agnostic binary serialization format)으로 구조화된 데이터를 효율적이고 간결하게(compact) 직렬화한다. IDL(Interface Definition Language) IDL은 소프트웨어 구성 요소의 인터페이스를 정의하는데 사용되는 언어 또는 명세로, 특히 분산시스템과 원격통신에서 사용됨. 원격 액세스나 다른 컴포넌트 간의 통신에서 메소드, 데이터의 구조 등을 정의하는데 사용됨. 서버 측에서는 서버는 인터페이스를 구현하고 클라이언트의 호출을 처리하기 위해 gRPC 서버를 실행하고 클라이언트 측에서는 클라이언트가 서버와 동일한 메소드를 제공하는 스텁을 가지고 있음. gRPC 클라이언트와 서버는 다양한 환경에서 실행되고 서로 통신할 수 있고 gRPC 지원 언어 중 어느 것으로 개발할 수 있음. gRPC로 Server Client 프로그램 개발하기</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(2)</title><link href="http://localhost:4000/grpc/intern/2023/12/04/grpc2.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(2)" /><published>2023-12-04T10:31:23+09:00</published><updated>2023-12-04T10:31:23+09:00</updated><id>http://localhost:4000/grpc/intern/2023/12/04/grpc2</id><content type="html" xml:base="http://localhost:4000/grpc/intern/2023/12/04/grpc2.html">&lt;h1 id=&quot;grpc로-개발하기&quot;&gt;gRPC로 개발하기&lt;/h1&gt;
+async with는 클래스나 함수를 비동기로 처리하고 결과를 반환하는 문법으로 async with로 실행 할 수 있는 클래스를 만드려면 &lt;b style=&quot;color:red&quot;&gt;__aenter__&lt;/b&gt;와 &lt;b style=&quot;color:red&quot;&gt;__aexit__&lt;/b&gt; 메소드를 구현해야 함. 그리고 메소드를 만들 때 반드시 async def 사용해야함.
+&lt;/div&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__aenter__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__aexit__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClassName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;async for&lt;/li&gt;
+&lt;div class=&quot;explain&quot;&gt;
+async with는 비동기를 반복하는 문법으로 async for로 실행 할 수 있는 클래스를 만드려면 &lt;b style=&quot;color:red&quot;&gt;__aiter__&lt;/b&gt;와 &lt;b style=&quot;color:red&quot;&gt;__anext__&lt;/b&gt; 메소드를 구현해야 함. 그리고 메소드를 만들 때 반드시 async def 사용해야함. 반복을 끝낼 때는 &lt;b style=&quot;color:orange&quot;&gt;StopAsyncIteration&lt;/b&gt; 예외를 발생시킴.
+&lt;/div&gt;
+&lt;/ul&gt;
+&lt;h4&gt;출처&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://dojang.io/mod/page/view.php?id=2469&quot;&gt; asyncio 사용하기&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Python" /><category term="Intern" /><summary type="html">Python asyncio 동기와 비동기 동기(synchronous)는 특정 작업이 끝나면 다음 작업을 처리하고 비동기(asynchronous)는 여러 작업을 처리하도록 예약항 뒤 작업이 끝나면 결과를 받는 방식 asyncio 사용하기 네이티브 코루틴 정의(async def) asyncio.get_event_loop로 이벤트 루프를 얻을 수 있고 asyncio.run_until_complete()로 코루틴 객체를 넣어 네이티브 코루틴이 이벤트 루프에서 실행될 수 있도록 예약할 수 있음 ```python import asyncio</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(2)</title><link href="http://localhost:4000/grpc/intern/2023/12/04/grpc2.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(2)" /><published>2023-12-04T12:31:23+09:00</published><updated>2023-12-04T12:31:23+09:00</updated><id>http://localhost:4000/grpc/intern/2023/12/04/grpc2</id><content type="html" xml:base="http://localhost:4000/grpc/intern/2023/12/04/grpc2.html">&lt;h1 id=&quot;grpc로-개발하기&quot;&gt;gRPC로 개발하기&lt;/h1&gt;
 &lt;h3&gt;RPC life cycle&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Unary RPC
@@ -288,7 +217,140 @@ IDL은 소프트웨어 구성 요소의 인터페이스를 정의하는데 사�
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;asyncio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run_client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="GRPC" /><category term="Intern" /><summary type="html">gRPC로 개발하기 RPC life cycle Unary RPC 클라이언트가 단일 요청을 보내고 단일 응답을 받는 가장 간단한 형태의 RPC 클라이언트가 스텁 메서드를 호출하면, 서버는 클라이언트의 이 호출에 대한 메타데이터, 메서드 이름 및 해당되는 경우 지정된 마감 시간과 함께 RPC가 호출되었음을 알림 서버는 응답을 보내기 전에 보내야하는 서버 스스로에 대한 메타데이터를 전송하거나 클라이언트가 요청을 보내기까지 대기. 어떤 작업을 할지는 어떤 어플리케이션 서비스인지에 따라 다름. 클라이언트로부터 요청을 받으면 서버는 응답을 만들고 클라이언트에게 응답을 전송함. 응답을 전송할 때 status detail(status code 등)과 필요한 메타데이터들이 함께 전송됨. 응답의 status가 OK이면 클라이언트는 응답을 받고 클라이언트 측에서 RPC 작업을 끝남. Server Streaming RPC Unary RPC와 유사하지만 서버는 클라이언트의 요청에 메시지의 stream을 응답으로 반환함. 클라이언트가 서버의 모든 응담을 받으면 클라이언트의 작업이 끝남. Client Streaming RPC Unary RPC와 유사하지만 클라이언트는 서버에 메시지 stream을 요청으로 보냄. 서버는 단일 응답을 전송하는데 무조건 클라이언트의 요청을 모두 받은 후에 응답을 전송해야하는 것은 아님. Bidirectional Streaming RPC 클라이언트가 메소드를 호출하고 서버가 클라이언트 메타데이터, 메소드 이름 및 deadline을 받으면서 시작됨. 서버는 자신의 초기 메타데이터를 전송하거나 클라이언트가 요청 stream을 보내기를 대기. 서버와 클라이언트가 stream을 어떻게 처리할지는 어떤 어플리케이션인지에 따라 다름. 서버 stream과 클라이언트 stream은 서로 독립적이기 때문에 어떤 순서로든 읽고 쓸 수 있음. Asynchronous Server Streaming RPC connect.proto ```cpp syntax = “proto3”;</summary></entry><entry><title type="html">HL7 FHIR(1)</title><link href="http://localhost:4000/hl7_fhir/2023/10/06/hl7_fhir.html" rel="alternate" type="text/html" title="HL7 FHIR(1)" /><published>2023-10-06T09:36:23+09:00</published><updated>2023-10-06T09:36:23+09:00</updated><id>http://localhost:4000/hl7_fhir/2023/10/06/hl7_fhir</id><content type="html" xml:base="http://localhost:4000/hl7_fhir/2023/10/06/hl7_fhir.html">&lt;p&gt;&lt;img class=&quot;logo&quot; src=&quot;/public/img/FHIR_LOGO.png&quot; alt=&quot;relative&quot; /&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="GRPC" /><category term="Intern" /><summary type="html">gRPC로 개발하기 RPC life cycle Unary RPC 클라이언트가 단일 요청을 보내고 단일 응답을 받는 가장 간단한 형태의 RPC 클라이언트가 스텁 메서드를 호출하면, 서버는 클라이언트의 이 호출에 대한 메타데이터, 메서드 이름 및 해당되는 경우 지정된 마감 시간과 함께 RPC가 호출되었음을 알림 서버는 응답을 보내기 전에 보내야하는 서버 스스로에 대한 메타데이터를 전송하거나 클라이언트가 요청을 보내기까지 대기. 어떤 작업을 할지는 어떤 어플리케이션 서비스인지에 따라 다름. 클라이언트로부터 요청을 받으면 서버는 응답을 만들고 클라이언트에게 응답을 전송함. 응답을 전송할 때 status detail(status code 등)과 필요한 메타데이터들이 함께 전송됨. 응답의 status가 OK이면 클라이언트는 응답을 받고 클라이언트 측에서 RPC 작업을 끝남. Server Streaming RPC Unary RPC와 유사하지만 서버는 클라이언트의 요청에 메시지의 stream을 응답으로 반환함. 클라이언트가 서버의 모든 응담을 받으면 클라이언트의 작업이 끝남. Client Streaming RPC Unary RPC와 유사하지만 클라이언트는 서버에 메시지 stream을 요청으로 보냄. 서버는 단일 응답을 전송하는데 무조건 클라이언트의 요청을 모두 받은 후에 응답을 전송해야하는 것은 아님. Bidirectional Streaming RPC 클라이언트가 메소드를 호출하고 서버가 클라이언트 메타데이터, 메소드 이름 및 deadline을 받으면서 시작됨. 서버는 자신의 초기 메타데이터를 전송하거나 클라이언트가 요청 stream을 보내기를 대기. 서버와 클라이언트가 stream을 어떻게 처리할지는 어떤 어플리케이션인지에 따라 다름. 서버 stream과 클라이언트 stream은 서로 독립적이기 때문에 어떤 순서로든 읽고 쓸 수 있음. Asynchronous Server Streaming RPC connect.proto ```cpp syntax = “proto3”;</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(1)</title><link href="http://localhost:4000/grpc/intern/2023/12/04/grpc1.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(1)" /><published>2023-12-04T10:31:23+09:00</published><updated>2023-12-04T10:31:23+09:00</updated><id>http://localhost:4000/grpc/intern/2023/12/04/grpc1</id><content type="html" xml:base="http://localhost:4000/grpc/intern/2023/12/04/grpc1.html">&lt;h1 id=&quot;grpc란&quot;&gt;gRPC란?&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+RPC(Remote Procedure Call)
+&lt;div class=&quot;explain&quot;&gt;RPC는 분산 컴퓨팅 시스템에서 사용하는 프로토콜로 한 프로그램 또는 프로세스가 다른 컴퓨터나 다른 주소 공간에 위차한 프로시저(서브루틴이나 메소드)를 로컬 프로시저 호출처럼 호출할 수 있게 함. RPC는 프로그램이 네트워크를 통해 서로 통신하고 서비스를 요청할 수 있게 하며, 분산 시스템과 서버-클라이언트 구조의 기본 개념 중 하나.&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+Protocol Buffer
+&lt;div class=&quot;explain&quot;&gt;
+구글에서 개발한 언어독립적 이진 직렬화 형식(language-agnostic binary serialization format)으로 구조화된 데이터를 효율적이고 간결하게(compact) 직렬화한다. 
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+IDL(Interface Definition Language)
+&lt;div class=&quot;explain&quot;&gt;
+IDL은 소프트웨어 구성 요소의 인터페이스를 정의하는데 사용되는 언어 또는 명세로, 특히 분산시스템과 원격통신에서 사용됨. 원격 액세스나 다른 컴포넌트 간의 통신에서 메소드, 데이터의 구조 등을 정의하는데 사용됨. 
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/GRPC.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;explain&quot;&gt;
+서버 측에서는 서버는 인터페이스를 구현하고 클라이언트의 호출을 처리하기 위해 gRPC 서버를 실행하고 클라이언트 측에서는 클라이언트가 서버와 동일한 메소드를 제공하는 스텁을 가지고 있음. gRPC 클라이언트와 서버는 다양한 환경에서 실행되고 서로 통신할 수 있고 gRPC 지원 언어 중 어느 것으로 개발할 수 있음.
+&lt;/div&gt;
+&lt;h3&gt;gRPC로 Server Client 프로그램 개발하기&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt; gRPC 설치하기
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;grpcio grpcio-tools
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt; Protocol Buffer 생성
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// The greeting service definition.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;service&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Greeter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Sends a greeting&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;rpc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SayHello&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloReply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Sends another greeting&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;rpc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SayHelloAgain&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloReply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// The request message containing the user&apos;s name.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HelloRequest&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// The response message containing the greetings&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HelloReply&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; grpc_tools.protoc &lt;span class=&quot;nt&quot;&gt;-I&lt;/span&gt;../../protos &lt;span class=&quot;nt&quot;&gt;--python_out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--pyi_out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--grpc_python_out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; ../../protos/FILE_NAME.proto
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt; Server 구현
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;concurrent&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;futures&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;logging&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;grpc&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;helloworld_pb2&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Greeter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GreeterServicer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SayHello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;helloworld_pb2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloReply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello, %s!&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;50051&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;futures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ThreadPoolExecutor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_workers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_GreeterServicer_to_server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Greeter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_insecure_port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;[::]:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Server started, listening on &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wait_for_termination&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basicConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;explain&quot;&gt;
+서버 측에서는 서버는 클라이언트의 요청을 처리하기 위한 메소드들을 정의하고 구현함. gRPC 인프라스트럭쳐는 들어오는 요청을 decode하고 서비스 메소드를 실행한 뒤 서버 응답을 encode함.
+&lt;/div&gt;
+
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt; Client 구현
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;__future__&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_function&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;logging&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;grpc&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;helloworld_pb2&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# NOTE(gRPC Python Team): .close() is possible on a channel and should be
+&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# used in circumstances in which the with statement does not fit the needs
+&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# of the code.
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Will try to greet world ...&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insecure_channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:50051&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;stub&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;helloworld_pb2_grpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GreeterStub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SayHello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;helloworld_pb2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HelloRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;you&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Greeter client received: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basicConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;explain&quot;&gt;
+클라이언트 측에서는 stub이라는 로컬 객체가 서비스롸 동일한 메소드를 구현하고 있음. 클라이언트는 이 로컬 객체로 메소드를 호출하면됨. 메소드를 호출하면 맞는 프로토콜 메시지 타입으로 호출 인자들이 wrap되고 서버로 요청이 보내짐. 그리고 서버의 프로토콜 버퍼 응답을 받음.
+&lt;/div&gt;
+
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt; Server와 Client 실행
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python hello_world_server.py
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;python hello_world_client.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3&gt;Synchronous VS Asynchronous&lt;/h3&gt;
+&lt;div class=&quot;explain&quot;&gt;
+응답이 서버로부터 도착할 때까지 차단되는 동기식 RPC 호출은 RPC가 추구하는 프로시저 호출의 가장 가까운 추상화임. 반면에 네트워크는 본질적으로 많은 경우 비동기적이며 현재 실행 중인 쓰레드를 차단하기 않고 RPC를 시작할 수 있는 것이 유용함. gRPC 지원 언어의 대부분은 동기 방식과 비동기 방식 양쪽 모두를 지원함.
+&lt;/div&gt;</content><author><name></name></author><category term="GRPC" /><category term="Intern" /><summary type="html">gRPC란? RPC(Remote Procedure Call) RPC는 분산 컴퓨팅 시스템에서 사용하는 프로토콜로 한 프로그램 또는 프로세스가 다른 컴퓨터나 다른 주소 공간에 위차한 프로시저(서브루틴이나 메소드)를 로컬 프로시저 호출처럼 호출할 수 있게 함. RPC는 프로그램이 네트워크를 통해 서로 통신하고 서비스를 요청할 수 있게 하며, 분산 시스템과 서버-클라이언트 구조의 기본 개념 중 하나. Protocol Buffer 구글에서 개발한 언어독립적 이진 직렬화 형식(language-agnostic binary serialization format)으로 구조화된 데이터를 효율적이고 간결하게(compact) 직렬화한다. IDL(Interface Definition Language) IDL은 소프트웨어 구성 요소의 인터페이스를 정의하는데 사용되는 언어 또는 명세로, 특히 분산시스템과 원격통신에서 사용됨. 원격 액세스나 다른 컴포넌트 간의 통신에서 메소드, 데이터의 구조 등을 정의하는데 사용됨. 서버 측에서는 서버는 인터페이스를 구현하고 클라이언트의 호출을 처리하기 위해 gRPC 서버를 실행하고 클라이언트 측에서는 클라이언트가 서버와 동일한 메소드를 제공하는 스텁을 가지고 있음. gRPC 클라이언트와 서버는 다양한 환경에서 실행되고 서로 통신할 수 있고 gRPC 지원 언어 중 어느 것으로 개발할 수 있음. gRPC로 Server Client 프로그램 개발하기</summary></entry><entry><title type="html">HL7 FHIR(1)</title><link href="http://localhost:4000/hl7_fhir/2023/10/06/hl7_fhir.html" rel="alternate" type="text/html" title="HL7 FHIR(1)" /><published>2023-10-06T09:36:23+09:00</published><updated>2023-10-06T09:36:23+09:00</updated><id>http://localhost:4000/hl7_fhir/2023/10/06/hl7_fhir</id><content type="html" xml:base="http://localhost:4000/hl7_fhir/2023/10/06/hl7_fhir.html">&lt;p&gt;&lt;img class=&quot;logo&quot; src=&quot;/public/img/FHIR_LOGO.png&quot; alt=&quot;relative&quot; /&gt;&lt;/p&gt;
 &lt;h1 id=&quot;hl7-fhir-란&quot;&gt;HL7 FHIR 란?&lt;/h1&gt;
 
 &lt;div class=&quot;explain&quot;&gt;FHIR (Fast Healthcare Interoperability Resources)는 HL7 (Health Level Seven International)에서 만든 의료정보표준으로 다양한 의료 기관에서 의료 정보를 교환하는 것을 위한 API의 표준이다. &lt;br /&gt; FHIR에서는 의료정보들을 &quot;리소스&quot;라는 데이터 블록을 단위로 작업을 수행한다. 리소스에는 환자 리소스, 증상 리소스, 방문 리소스, 처방 리소스 등의 의료정보에 대한 리소스를 포함하여 여러 리소스들을 한 번에 관리하기 위한 번들 리소스 등이 있다. FHIR의 리소스들은 파레토 법칙을 따라 의료 데이터들의 80%에 대해서는 표준을 정의하고 있고 나머지 20%의 의료 데이터에 대해서는 stakeholder의 필요에 따라 유연하게 사용할 수 있게 지원하여 시스템의 환경에 맞게 융통성 있게 쓰일 수 있다.&lt;br /&gt; 또한, RestAPI 인터페이스를 사용하여 웹을 통하여 데이터를 공유하기 용이하다. &lt;br /&gt;
@@ -723,252 +785,4 @@ Delete도 &lt;b&gt;identifier&lt;/b&gt;로 조건을 줘서 조건부 삭제 가
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3&gt;추가적인 자료&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;amp;cloudshell=false&quot;&gt;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;amp;cloudshell=false&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Health_API" /><summary type="html">FHIR 리소스 CRUD(2)</summary></entry><entry><title type="html">Google Cloud Health API-FHIR CRUD(1)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(1)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir1.html">&lt;h1 id=&quot;fhir-리소스-crud1&quot;&gt;FHIR 리소스 CRUD(1)&lt;/h1&gt;
-
-&lt;h3&gt;FHIR 리소스 생성하기(Create)&lt;/h3&gt;
-&lt;h4&gt;-&amp;nbsp;&lt;a href=&quot;/public/file/Patient.json&quot; download=&quot;&quot;&gt;Patient.json&lt;/a&gt; 파일 다운로드&lt;/h4&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; https://cloud.google.com/healthcare-api/docs/resources/Patient.json
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;use&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;official&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;family&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Smith&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;given&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Darcy&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;gender&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;female&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;birthDate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1970-01-01&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;resourceType&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Patient&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;identifier&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;104&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my_code_system&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;&lt;span class=&quot;file&quot;&gt;Patient.json&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;h4&gt;-&amp;nbsp;Patient.json을 Google Cloud FHIR 저장소에 업로드&lt;/h4&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST  &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;gcloud auth application-default print-access-token&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;  
-&lt;span class=&quot;gp&quot;&gt;-H &quot;Content-Type: application/fhir+json;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;charset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;utf-8&lt;span class=&quot;s2&quot;&gt;&quot; --data @file_name.json &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
-&quot;&lt;/span&gt;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/us-central1/datasets/my-dataset/fhirStores/my-fhir-store/fhir/Patient&lt;span class=&quot;s2&quot;&gt;&quot; 
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;&lt;b style=&quot;color:red&quot;&gt;projects/PROJECT_ID/locations/us-central1/datasets/my-dataset/fhirStores/my-fhir-store&lt;/b&gt;는 사용하는 FHIR 데이터 저장소 Path를 입력&lt;br /&gt;
-&lt;span class=&quot;example&quot;&gt;ex) projects/rapid-arbor-00000/locations/asia-northeast3/datasets/Fhir_test/fhirStores/FHIR_TEST_1&lt;/span&gt;&lt;br /&gt;
-&lt;b style=&quot;color:red&quot;&gt;--data @file_name.json&lt;/b&gt;에 파일 이름을 입력&lt;br /&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/create.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt; Patient의 id가 부여되고 부여된 &lt;span style=&quot;color:red&quot;&gt;Patient ID&lt;/span&gt;가 응답에 포함됨
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;h4&gt;-&amp;nbsp;Encounter.json을 Google Cloud FHIR 저장소에 업로드&lt;/h4&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;finished&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;class&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://hl7.org/fhir/v3/ActCode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;code&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;IMP&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;display&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;inpatient encounter&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;reasonCode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;The patient had an abnormal heart rate. She was concerned about this.&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;reference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Patient/PATIENT_ID&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;resourceType&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Encounter&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;&lt;span class=&quot;file&quot;&gt;Encounter.json&lt;/span&gt;&lt;br /&gt;
-Patient 리소스를 생성할 때 부여된 &lt;span style=&quot;color:red&quot;&gt;Patient ID&lt;/span&gt;를 명시&lt;br /&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;curl -X POST \
-    -H &quot;Authorization: Bearer $&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gcloud auth print-access-token&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
-    -H &quot;&lt;/span&gt;Content-Type: application/fhir+json&lt;span class=&quot;s2&quot;&gt;&quot; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
-    -d @Encounter.json &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
-    &quot;&lt;/span&gt;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Encounter&lt;span class=&quot;s2&quot;&gt;&quot;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;
-&lt;span style=&quot;color:red&quot;&gt;Encounter ID&lt;/span&gt;도 부여됨
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;h4&gt;-&amp;nbsp;Observation.json을 Google Cloud FHIR 저장소에 업로드&lt;/h4&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;resourceType&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Observation&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;final&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;reference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Patient/PATIENT_ID&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;effectiveDateTime&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-01-01T00:00:00+00:00&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;identifier&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my-code-system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ABC-12345&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;code&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;coding&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://loinc.org&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;code&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;8867-4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;display&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Heart rate&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;valueQuantity&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;unit&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bpm&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;encounter&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;reference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Encounter/ENCOUNTER_ID&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;&lt;span class=&quot;file&quot;&gt;Observation.json&lt;/span&gt;&lt;br /&gt;
-Patient 리소스와 Encounter 리소스를 생성할 때 부여된 &lt;span style=&quot;color:red&quot;&gt;Patient ID, Encounter ID&lt;/span&gt;를 명시&lt;br /&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;curl -X POST \
-    -H &quot;Authorization: Bearer $&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gcloud auth print-access-token&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
-    -H &quot;&lt;/span&gt;Content-Type: application/fhir+json&lt;span class=&quot;s2&quot;&gt;&quot; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
-    -d @Observation.json &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
-    &quot;&lt;/span&gt;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation&lt;span class=&quot;s2&quot;&gt;&quot;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;
-&lt;span style=&quot;color:red&quot;&gt;Observation ID&lt;/span&gt;도 부여됨
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;h4&gt;-&amp;nbsp;조건부 Patient 리소스 생성&lt;/h4&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;gcloud auth print-access-token&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Content-Type: application/fhir+json&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;If-None-Exist: FHIR_SEARCH_QUERY&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; @Patient.json &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;https://healthcare.googleapis.com/v1/projects/rapid-arbor-395501/locations/asia-northeast3/datasets/Fhir_test/fhirStores/FHIR_TEST_1/fhir/Patient&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;
-&lt;b style=&quot;color:red&quot;&gt;FHIR_SEARCH_QUERY&lt;/b&gt;에 조건을 입력&lt;br /&gt;
-&lt;span class=&quot;example&quot;&gt;ex)If-None-Exist:identifier=my-code-system|104&lt;/span&gt;&lt;br /&gt;
-조건을 만족하는 리소스가 이미 존재하면 새로운 FHIR 리소스가 생성되지 않음&lt;br /&gt;
-Cloud Healthcare API v1에서는 &lt;b&gt;identifier&lt;/b&gt; 검색 매개변수를 배타적으로 사용하기 때문에 identifier로 조건을 줘야하는 것으로 보임
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h3&gt;FHIR 리소스 검색하기(Read)&lt;/h3&gt;
-&lt;h4&gt;-&amp;nbsp;family name이 Smith인 Patient 리소스 검색&lt;/h4&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;  -H &quot;Authorization: Bearer $&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gcloud auth application-default print-access-token&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; 
-&lt;/span&gt;&lt;span class=&quot;go&quot;&gt;  &quot;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/us-central1/datasets/my-dataset/fhirStores/my-fhir-store/fhir/Patient?family:exact=Smith&quot; 
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;family name이 Smith인 Patient 리소스가 Json 형태로 응답으로 리턴됨&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/read.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><category term="Health_API" /><summary type="html">FHIR 리소스 CRUD(1)</summary></entry><entry><title type="html">Google Cloud Health API-시작하기</title><link href="http://localhost:4000/health_api/2023/09/26/starting_heathcare_api.html" rel="alternate" type="text/html" title="Google Cloud Health API-시작하기" /><published>2023-09-26T22:46:23+09:00</published><updated>2023-09-26T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/26/starting_heathcare_api</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/26/starting_heathcare_api.html">&lt;h1 id=&quot;시작하기-전에&quot;&gt;시작하기 전에&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;Google Cloud 콘솔에서 프로젝트 생성/선택
-&lt;img class=&quot;picture&quot; src=&quot;/public/img/console.png&quot; alt=&quot;relative&quot; /&gt;&lt;/li&gt;
-&lt;li&gt;
-Google Healthcare API 사용 설정
-&lt;img class=&quot;picture&quot; src=&quot;/public/img/api_valid.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;
-&lt;div class=&quot;explain&quot;&gt;API 및 서비스 &amp;gt; API 및 서비스 사용 설정 &amp;gt; Cloud Healthcare API&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;Cloud Shell 실행 후 결과 확인&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; gcloud auth application-default print-access-token
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h1 id=&quot;데이터셋-생성&quot;&gt;데이터셋 생성&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;Google Cloud 콘솔에서 Healthcare 검색
-&lt;img class=&quot;picture&quot; src=&quot;/public/img/console_health.png&quot; alt=&quot;relative&quot; /&gt;
-&lt;/li&gt;
-&lt;li&gt;데이터 세트 만들기 클릭&lt;br /&gt;
-&lt;img class=&quot;picture&quot; src=&quot;/public/img/healthcare_browser.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;
-&lt;div class=&quot;explain&quot;&gt;정보 입력 후 만들기&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-데이터 스토어 만들기&lt;br /&gt;
-&lt;img class=&quot;picture&quot; src=&quot;/public/img/make_dataset1.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;
-&lt;div class=&quot;explain&quot;&gt;2에서 만든 데이터 셋 클릭 &amp;gt; 데이터 스토어 만들기&lt;/div&gt;&lt;br /&gt;
-&lt;img class=&quot;picture&quot; src=&quot;/public/img/make_dataset2.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;
-&lt;div class=&quot;explain&quot;&gt;
-정보 입력 후 만들기&lt;br /&gt;
-브라우저 &amp;gt; 데이터 셋 선택 &amp;gt; 데이터 스토어 클릭 &amp;gt; 데이터 저장소 세부 정보나&lt;br /&gt;
-FHIR 뷰어 &amp;gt; FHIR 스토어 선택해서 Path 확인 가능
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;gcloud-사용하기&quot;&gt;gcloud 사용하기&lt;/h1&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;https://dl.google.com/dl/cloudsdk/channels/rapid/GoogleCloudSDKInstaller.exe?hl=ko
-&quot;&gt;gcloud CLI&lt;/a&gt; 다운로드 및 실행
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;img src=&quot;/public/img/gcloud1.png&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&quot;/public/img/gcloud2.png&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&quot;/public/img/gcloud3.png&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;img src=&quot;/public/img/gcloud4.png&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&quot;/public/img/gcloud6.png&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&quot;/public/img/gcloud7.png&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;div class=&quot;explain&quot;&gt;
-시간이 걸리는 작업이라 인내심을 가져야함
-&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/public/img/gcloud8.png&quot; alt=&quot;relative&quot; /&gt;&lt;/p&gt;
-&lt;div class=&quot;explain&quot;&gt;
-cmd창에 위와 같이 뜸&lt;br /&gt;
-Y를 입력하면 인터넷 브라우저 창에 아래와 같은 창이 뜸&lt;br /&gt;
-허용을 클릭
-&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/public/img/gcloud9.png&quot; alt=&quot;relative&quot; /&gt;
-&lt;img src=&quot;/public/img/gcloud10.png&quot; alt=&quot;relative&quot; /&gt;&lt;/p&gt;
-&lt;div class=&quot;explain&quot;&gt;
-cmd창에 위와 같이 뜸&lt;br /&gt;
-작업할 프로젝트를 선택하면 됨
-Healcare API를 활성하고 싶으면 다음을 cmd창에 입력
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;gcloud services &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;healthcare.googleapis.com 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-Healthcare API를 사용하기 위해서는 다음과 같이 권한/역할을 부여해줘야함.
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;gcloud projects add-iam-policy-binding PROJECT_ID &lt;span class=&quot;nt&quot;&gt;--member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user:EMAIL_ADDRESS&quot;&lt;/span&gt; 
-&lt;span class=&quot;go&quot;&gt; --role=roles/healthcare.datasetAdmin 
-&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;gcloud projects add-iam-policy-binding PROJECT_ID &lt;span class=&quot;nt&quot;&gt;--member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user:EMAIL_ADDRESS&quot;&lt;/span&gt; 
-&lt;span class=&quot;go&quot;&gt; --role=roles/healthcare.fhirStoreAdmin
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-아래의 명령어를 입력했을 때 FHIR 리소스를 가져와서 저장이되면 성공한 것임
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;gcloud healthcare fhir-stores import gcs my-fhir-store 
-&lt;span class=&quot;go&quot;&gt;  --project=PROJECT_ID 
-  --dataset=my-dataset 
-  --location=my-fhir-country 
-  --gcs-uri=gs://gcp-public-data--synthea-fhir-data-10-patients/fhir_r4_ndjson/*.ndjson 
-  --content-structure=RESOURCE 
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/public/img/gcloud11.png&quot; alt=&quot;relative&quot; /&gt;&lt;/p&gt;
-&lt;div class=&quot;explain&quot;&gt;
-아래의 명령어를 입력했을 때 나온 결과를 $(gcloud auth application-default print-access-token) 대신 사용하면&lt;br /&gt; 로컬에서 curl 명령어로 통해 리소스 관리 가능
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;gcloud auth print-access-token
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="Health_API" /><summary type="html">시작하기 전에 Google Cloud 콘솔에서 프로젝트 생성/선택 Google Healthcare API 사용 설정 API 및 서비스 &amp;gt; API 및 서비스 사용 설정 &amp;gt; Cloud Healthcare API Cloud Shell 실행 후 결과 확인 &amp;gt; gcloud auth application-default print-access-token</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;amp;cloudshell=false&quot;&gt;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;amp;cloudshell=false&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Health_API" /><summary type="html">FHIR 리소스 CRUD(2)</summary></entry></feed>
