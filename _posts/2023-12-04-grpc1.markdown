@@ -1,0 +1,146 @@
+---
+layout: post
+title: "빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(1)"
+date: 2023-12-04 10:31:23 +0900
+categories:  ["GRPC","Intern"]
+---
+# gRPC란?
+<ul>
+<li>
+RPC(Remote Procedure Call)
+<div class="explain">RPC는 분산 컴퓨팅 시스템에서 사용하는 프로토콜로 한 프로그램 또는 프로세스가 다른 컴퓨터나 다른 주소 공간에 위차한 프로시저(서브루틴이나 메소드)를 로컬 프로시저 호출처럼 호출할 수 있게 함. RPC는 프로그램이 네트워크를 통해 서로 통신하고 서비스를 요청할 수 있게 하며, 분산 시스템과 서버-클라이언트 구조의 기본 개념 중 하나.</div>
+</li>
+<li>
+Protocol Buffer
+<div class="explain">
+구글에서 개발한 언어독립적 이진 직렬화 형식(language-agnostic binary serialization format)으로 구조화된 데이터를 효율적이고 간결하게(compact) 직렬화한다. 
+</div>
+</li>
+<li>
+IDL(Interface Definition Language)
+<div class="explain">
+IDL은 소프트웨어 구성 요소의 인터페이스를 정의하는데 사용되는 언어 또는 명세로, 특히 분산시스템과 원격통신에서 사용됨. 원격 액세스나 다른 컴포넌트 간의 통신에서 메소드, 데이터의 구조 등을 정의하는데 사용됨. 
+</div>
+</li>
+</ul>
+<img class="picture"  src='{{ "public/img/GRPC.jpg" | relative_url }}' alt='relative'/><br>
+<div class="explain">
+서버 측에서는 서버는 인터페이스를 구현하고 클라이언트의 호출을 처리하기 위해 gRPC 서버를 실행하고 클라이언트 측에서는 클라이언트가 서버와 동일한 메소드를 제공하는 스텁을 가지고 있음. gRPC 클라이언트와 서버는 다양한 환경에서 실행되고 서로 통신할 수 있고 gRPC 지원 언어 중 어느 것으로 개발할 수 있음.
+</div>
+<h3>gRPC로 Server Client 프로그램 개발하기</h3>
+
+<ol>
+<li> gRPC 설치하기
+</li>
+</ol>
+```console
+> python -m pip install --upgrade pip
+> python -m pip install grpcio grpcio-tools
+```
+<ol start="2">
+<li> Protocol Buffer 생성
+</li>
+</ol>
+```cpp
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  // Sends another greeting
+  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+}
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+```
+```console
+> python -m grpc_tools.protoc -I../../protos --python_out=. --pyi_out=. --grpc_python_out=. ../../protos/FILE_NAME.proto
+```
+<ol start="3">
+<li> Server 구현
+</li>
+</ol>
+```python
+from concurrent import futures
+import logging
+
+import grpc
+import helloworld_pb2
+import helloworld_pb2_grpc
+
+
+class Greeter(helloworld_pb2_grpc.GreeterServicer):
+    def SayHello(self, request, context):
+        return helloworld_pb2.HelloReply(message="Hello, %s!" % request.name)
+
+
+def serve():
+    port = "50051"
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
+    server.add_insecure_port("[::]:" + port)
+    server.start()
+    print("Server started, listening on " + port)
+    server.wait_for_termination()
+
+
+if __name__ == "__main__":
+    logging.basicConfig()
+    serve()
+
+```
+<div class="explain">
+서버 측에서는 서버는 클라이언트의 요청을 처리하기 위한 메소드들을 정의하고 구현함. gRPC 인프라스트럭쳐는 들어오는 요청을 decode하고 서비스 메소드를 실행한 뒤 서버 응답을 encode함.
+</div>
+
+<ol start="4">
+<li> Client 구현
+</li>
+</ol>
+```python
+from __future__ import print_function
+
+import logging
+
+import grpc
+import helloworld_pb2
+import helloworld_pb2_grpc
+
+
+def run():
+    # NOTE(gRPC Python Team): .close() is possible on a channel and should be
+    # used in circumstances in which the with statement does not fit the needs
+    # of the code.
+    print("Will try to greet world ...")
+    with grpc.insecure_channel("localhost:50051") as channel:
+        stub = helloworld_pb2_grpc.GreeterStub(channel)
+        response = stub.SayHello(helloworld_pb2.HelloRequest(name="you"))
+    print("Greeter client received: " + response.message)
+
+
+if __name__ == "__main__":
+    logging.basicConfig()
+    run()
+```
+<div class="explain">
+클라이언트 측에서는 stub이라는 로컬 객체가 서비스롸 동일한 메소드를 구현하고 있음. 클라이언트는 이 로컬 객체로 메소드를 호출하면됨. 메소드를 호출하면 맞는 프로토콜 메시지 타입으로 호출 인자들이 wrap되고 서버로 요청이 보내짐. 그리고 서버의 프로토콜 버퍼 응답을 받음.
+</div>
+
+<ol start="5">
+<li> Server와 Client 실행
+</li>
+</ol>
+```console
+> python hello_world_server.py
+> python hello_world_client.py
+```
+
+<h3>Synchronous VS Asynchronous</h3>
+<div class="explain">
+응답이 서버로부터 도착할 때까지 차단되는 동기식 RPC 호출은 RPC가 추구하는 프로시저 호출의 가장 가까운 추상화임. 반면에 네트워크는 본질적으로 많은 경우 비동기적이며 현재 실행 중인 쓰레드를 차단하기 않고 RPC를 시작할 수 있는 것이 유용함. gRPC 지원 언어의 대부분은 동기 방식과 비동기 방식 양쪽 모두를 지원함.
+</div>

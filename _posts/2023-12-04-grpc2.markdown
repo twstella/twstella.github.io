@@ -1,0 +1,168 @@
+---
+layout: post
+title: "빅데이터 혁신 융합대학 인턴 ELP 개발 - gRPC(2)"
+date: 2023-12-04 10:31:23 +0900
+categories:  ["GRPC","Intern"]
+---
+# gRPC로 개발하기
+<h3>RPC life cycle</h3>
+<ul>
+  <li>Unary RPC
+  <div class="explain">
+  클라이언트가 단일 요청을 보내고 단일 응답을 받는 가장 간단한 형태의 RPC
+  <ol>
+    <li>클라이언트가 스텁 메서드를 호출하면, 서버는 클라이언트의 이 호출에 대한 메타데이터, 메서드 이름 및 해당되는 경우 지정된 마감 시간과 함께 RPC가 호출되었음을 알림
+    </li>
+    <li>
+    서버는 응답을 보내기 전에 보내야하는 서버 스스로에 대한 메타데이터를 전송하거나 클라이언트가 요청을 보내기까지 대기. 어떤 작업을 할지는 어떤 어플리케이션 서비스인지에 따라 다름.
+    </li>
+    <li>
+    클라이언트로부터 요청을 받으면 서버는 응답을 만들고 클라이언트에게 응답을 전송함. 응답을 전송할 때 status detail(status code 등)과 필요한 메타데이터들이 함께 전송됨.
+    </li>
+    <li>
+    응답의 status가 OK이면 클라이언트는 응답을 받고 클라이언트 측에서 RPC 작업을 끝남.
+    </li>
+  </ol>
+  </div>
+  </li>
+  <li>Server Streaming RPC
+    <div> Unary RPC와 유사하지만 서버는 클라이언트의 요청에 메시지의 stream을 응답으로 반환함. 클라이언트가 서버의 모든 응담을 받으면 클라이언트의 작업이 끝남.
+    </div>
+  </li>
+  <li>Client Streaming RPC
+    <div> Unary RPC와 유사하지만 클라이언트는 서버에 메시지 stream을 요청으로 보냄. 서버는 단일 응답을 전송하는데 무조건 클라이언트의 요청을 모두 받은 후에 응답을 전송해야하는 것은 아님.
+    </div>
+  </li>
+  <li>
+  Bidirectional Streaming RPC
+  <div>
+  클라이언트가 메소드를 호출하고 서버가 클라이언트 메타데이터, 메소드 이름 및 deadline을 받으면서 시작됨. 서버는 자신의 초기 메타데이터를 전송하거나 클라이언트가 요청 stream을 보내기를 대기. 서버와 클라이언트가 stream을 어떻게 처리할지는 어떤 어플리케이션인지에 따라 다름. 서버 stream과 클라이언트 stream은 서로 독립적이기 때문에 어떤 순서로든 읽고 쓸 수 있음.
+  </div>
+  </li>
+</ul>
+<h3>Asynchronous Server Streaming RPC</h3>
+<ul>
+<li>connect.proto</li>
+</ul>
+```cpp
+syntax = "proto3";
+
+service ConnectService {
+    rpc UnaryRPC(RequestMessage) returns (ResponseMessage);
+    rpc ServerStreamRPC(RequestMessage) returns (stream ResponseMessage);
+}
+message RequestMessage {
+    string request_data = 1;
+}
+
+message ResponseMessage {
+    string response_data = 1;
+}
+```
+<ul>
+<li>server.py</li>
+</ul>
+```python
+import grpc
+import asyncio
+import connect_pb2
+import connect_pb2_grpc
+import time
+
+
+class ConnectServicer(connect_pb2_grpc.ConnectServiceServicer):
+    async def UnaryRPC(self, request, context):
+        response_data = "Hello, " + request.request_data
+        return connect_pb2.ResponseMessage(response_data=response_data)
+    async def  ServerStreamRPC(self, request, context):
+        for i in range(1,11):
+            response_date = f"Hello, {request.request_data}: server({i}) "
+            yield connect_pb2.ResponseMessage(response_data=response_date)
+
+
+async def testing2():
+    await asyncio.sleep(2)
+    print(f"{time.strftime('%X')}: Server testing2")
+
+
+async def testing3():
+    await asyncio.sleep(3)
+    print(f"{time.strftime('%X')}: Server testing3")
+
+async def serve():
+    try:
+        server = grpc.aio.server()
+        connect_pb2_grpc.add_ConnectServiceServicer_to_server(ConnectServicer(), server)
+        listen_addr = "[::]:50051"
+        server.add_insecure_port(listen_addr)
+        await server.start()
+        print(f"Server listening on {listen_addr}")
+        task1 = asyncio.create_task(testing2())
+        task2 = asyncio.create_task(testing3())
+        await task1
+        await task2
+        await server.wait_for_termination()
+    except asyncio.CancelledError:
+        print("\nConnection dropped!")
+
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(serve())
+    except KeyboardInterrupt:
+        print("Bye")
+```
+<ul>
+<li>unary_client.py</li>
+</ul>
+```python
+import grpc
+import asyncio
+import connect_pb2
+import connect_pb2_grpc
+
+async def run_client():
+    channel = grpc.aio.insecure_channel("localhost:50051")
+    stub = connect_pb2_grpc.ConnectServiceStub(channel)
+
+    request = connect_pb2.RequestMessage(request_data="People")  # Correct the typo here
+    try:
+        response = await stub.UnaryRPC(request)
+        print("Response from server:", response.response_data)
+    except grpc.aio.AioRpcError as e:
+        print(f"RPC failed: {e}")
+    # stop_request = connect_pb2.RequestMessage(request_data="__SHUTDOWN__")
+    # await stub.UnaryRPC(stop_request)
+
+if __name__ == "__main__":
+    asyncio.run(run_client())
+```
+<ul>
+<li>server_stream_client.py</li>
+</ul>
+```python
+import grpc
+import asyncio
+import connect_pb2
+import connect_pb2_grpc
+
+
+async def run_client():
+    channel = grpc.aio.insecure_channel("localhost:50051")
+    stub = connect_pb2_grpc.ConnectServiceStub(channel)
+
+    request = connect_pb2.RequestMessage(request_data="People")  # Correct the typo here
+    try:
+        async for response in stub.ServerStreamRPC(request):
+            print("Response from server:", response.response_data)
+
+    except grpc.aio.AioRpcError as e:
+        print(f"RPC failed: {e}")
+    # stop_request = connect_pb2.RequestMessage(request_data="__SHUTDOWN__")
+    # await stub.UnaryRPC(stop_request)
+
+
+if __name__ == "__main__":
+    asyncio.run(run_client())
+
+```
