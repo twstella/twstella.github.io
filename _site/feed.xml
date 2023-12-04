@@ -1,8 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-04T16:53:35+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain.html">&lt;h1 id=&quot;tottree-of-thoughts&quot;&gt;ToT(Tree of Thoughts)&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-04T23:12:06+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain1.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain1</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain1.html">&lt;h1 id=&quot;langchain&quot;&gt;Langchain&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;필요한 패키지들 설치&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;openai
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;langchain
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;모듈들 import하고 Open AI API key를 환경변수에 저장&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;subprocess&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.chains&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.llms&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OpenAI&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.prompts&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.chat_models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ChatOpenAI&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;openai&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.chains&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SequentialChain&lt;/span&gt;
+
+
+&lt;span class=&quot;n&quot;&gt;openai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;api_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;OPENAI_API_KEY&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;프롬프트 템플릿 생성&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+You are a professional doctor, so you shouldn&apos;t respond with answers like &apos;I don&apos;t know&apos; or &apos;ask your personal doctor.&apos;
+My symptoms are as follows: {symptom}.
+Can you provide me with five possible diagnoses for my condition, along with a list of medicines that you could prescribe for each diagnosis?
+Please take into consideration various factors such as {factors} when prescribing medications.
+The diagnosis and the prescription should be nouns, and each diagnosis should be in the following format:
+
+[Diagnosis 1]
+Condition: Sickness_1
+Prescription: Medicine_1, Medicine_2, etc.&quot;
+A:
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;input_variables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;symptom&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;factors&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;lang chain의 OpenAI 모델 사용&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;symptom&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+I can see lights flashing at the corner of my eyes each time I blink.
+The light looks like a firefly flying in front of my eyes.
+I can see the light even when there isn&apos;t any light source.
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;factors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+I&apos;m in my mid-20s, and I was born prematurely at 8 months of pregnancy.
+My vision has recently declined rapidly. I have been diagnosed for immature retina.
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OpenAI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temperature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;symptom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;symptom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;factors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;factors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;결과 확인&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/result1.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;div class=&quot;explain&quot;&gt;
-&lt;/div&gt;
+temperature가 0에 가까울수록 높은 정확도를 보임.&lt;br /&gt;
+temperature가 1에 가까울수록 창의적인 결과를 내기 때문에 이런 결과가 나온 것이라 예상됨.
+&lt;div&gt;
+&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="LLM" /><category term="Intern" /><summary type="html">Langchain 필요한 패키지들 설치 &amp;gt; pip install openai &amp;gt; pip install langchain 모듈들 import하고 Open AI API key를 환경변수에 저장 ```python import subprocess import os from langchain.chains import LLMChain from langchain.llms import OpenAI from langchain.prompts import PromptTemplate from langchain.chat_models import ChatOpenAI import openai from langchain.chains import SequentialChain</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(3)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain3.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(3)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain3</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain3.html">&lt;h1 id=&quot;langchain으로-huggingface의-llama-모델-사용하기&quot;&gt;Langchain으로 Huggingface의 llama 모델 사용하기&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;필요한 패키지 다운&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;langchain
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;huggingface_hub
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-qU&lt;/span&gt; transformers
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;필요한 모듈 다운로드하고 Huggingface에서 llama 모델 다운로드&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.llms&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LlamaCpp&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.callbacks.manager&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CallbackManager&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.callbacks.streaming_stdout&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StreamingStdOutCallbackHandler&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;huggingface_hub&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hf_hub_download&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;hf_hub_download&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repo_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TheBloke/Llama-2-7B-Chat-GGML&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;llama-2-7b-chat.ggmlv3.q2_K.bin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cache_dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./models&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h4&gt;출처&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://medium.com/@astropomeai/implementing-the-tree-of-thoughts-in-langchains-chain-f2ebc5864fac&quot;&gt;Implementing the Tree of Thoughts in LangChain’s Chain&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="LLM" /><category term="Intern" /><summary type="html">ToT(Tree of Thoughts) 출처 Implementing the Tree of Thoughts in LangChain’s Chain</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 ELP 개발 - asyncio</title><link href="http://localhost:4000/python/intern/2023/12/04/grpc3.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 ELP 개발 - asyncio" /><published>2023-12-04T15:04:23+09:00</published><updated>2023-12-04T15:04:23+09:00</updated><id>http://localhost:4000/python/intern/2023/12/04/grpc3</id><content type="html" xml:base="http://localhost:4000/python/intern/2023/12/04/grpc3.html">&lt;h1 id=&quot;python-asyncio&quot;&gt;Python asyncio&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://knowslog.tistory.com/entry/Langchain%EC%9C%BC%EB%A1%9C-LLaMA2-cpp-%EB%B2%84%EC%A0%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0&quot;&gt;Langchain으로 LLaMA2 cpp 버전 사용하기&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="LLM" /><category term="Intern" /><summary type="html">Langchain으로 Huggingface의 llama 모델 사용하기 필요한 패키지 다운 &amp;gt; pip install langchain &amp;gt; pip install huggingface_hub &amp;gt; pip install -qU transformers 필요한 모듈 다운로드하고 Huggingface에서 llama 모델 다운로드 ```python from langchain.llms import LlamaCpp from langchain import PromptTemplate, LLMChain from langchain.callbacks.manager import CallbackManager from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler from huggingface_hub import hf_hub_download</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(2)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain2.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(2)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain2</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain2.html">&lt;h1 id=&quot;tottree-of-thoughts&quot;&gt;ToT(Tree of Thoughts)&lt;/h1&gt;
+&lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/ToT.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;explain&quot;&gt;
+ToT(Tree of Thoughts)는 CoT(Chain of Thoughts)를 확장시킨 개념.
+CoT에서는 LLM들 사이의 생각을 선형적으로 연결하기 때문에 중간에 잘못된 생각이 끼어들면 이 잘못된 생각이 결과까지 전파된다는 문제가 있었음. 그러나 ToT에서는 중간에 여러 생각들을 평가하고 잘못된 생각은 버리기 때문에 이러한 문제가 적게 발생함.&lt;br /&gt;
+2024년 초에 Google에서 발표할 예정인 Multi-Modal LLM Model인 Gemini가 ToT를 사용할 예정이라고함.
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;필요한 패키지들 설치&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;openai
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;langchain
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;모듈들 import하고 Open AI API key를 환경변수에 저장&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;subprocess&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.chains&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.llms&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OpenAI&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.prompts&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.chat_models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ChatOpenAI&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;openai&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.chains&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SequentialChain&lt;/span&gt;
+
+
+&lt;span class=&quot;n&quot;&gt;openai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;api_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;OPENAI_API_KEY&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;첫번째 Prompt Templete과 OpenAI 모델 생성&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Step 1:
+You are a professional doctor, so you shouldn&apos;t respond with answers like &apos;I don&apos;t know&apos; or &apos;ask your personal doctor.&apos;
+My symptoms are as follows: {symptom}.
+Can you provide me with ten possible diagnoses for my condition, along with a list of medicines that you could prescribe for each diagnosis?
+Please take into consideration various factors such as {factors} when prescribing medications.
+The diagnosis and the prescription should be nouns, and each diagnosis should be in the following format:
+
+[Diagnosis 1]
+Condition: Sickness_1
+Prescription: Medicine_1, Medicine_2, etc.&quot;
+A:
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;input_variables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;symptom&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;factors&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;chain1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ChatOpenAI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temperature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;gpt-4&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;diagnosis&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;두번째 Prompt Templete과 OpenAI 모델 생성&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Step 2:
+For each diagnosis, assess their potential.
+Consider the point prevalence of the illness.
+You can calculate the point prevalence by dividing the number of current cases by the total population at risk.
+Place the diagnosis with the highest likelihood at the top of the list.
+Additionally, take into account the potential side effects of the prescribed medicines.
+{diagnosis}
+A:
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;input_variables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;diagnosis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;chain2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ChatOpenAI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temperature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;gpt-4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;review&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;세번째 Prompt Templete과 OpenAI 모델 생성&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Step 3:
+For each diagnosis, delve deeper into the thought process.
+When prescribing medicines, consider whether there are any substances that can cause an allergic shock (Anaphylaxis).
+Additionally, think about any medicines or foods that should not be consumed with the prescribed medication.
+{review}
+A:
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;input_variables&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;review&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;chain3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ChatOpenAI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temperature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;gpt-4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;deepen_thought_process&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;마지막 Prompt Templete과 OpenAI 모델 생성&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Step 4:
+Based on the likelihood of the ailment and the toxicity of the prescribed medicines, rank the ten diagnoses.
+Include the symptoms of the disease in each diagnosis.
+Additionally, for each prescribed medicine, provide information about side effects and precautions for intake.
+{deepen_thought_process}
+A:
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;input_variables&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;deepen_thought_process&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;chain4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ChatOpenAI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temperature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;gpt-4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ranked_diagnosis&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;7&quot;&gt;
+&lt;li&gt;생성한 OpenAI 모델들 연결&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;overall_chain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SequentialChain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;chains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chain1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chain2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chain3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chain4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;input_variables&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;symptom&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;factors&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output_variables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ranked_diagnosis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;verbose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;8&quot;&gt;
+&lt;li&gt;ToT 모델로 증상에 대한 병명과 처방약, 처방약 부작용 획득&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;symptom&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+I can see lights flashing at the corner of my eyes each time I blink.
+The light looks like a firefly flying in front of my eyes.
+I can see the light even when there isn&apos;t any light source.
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;factors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+I&apos;m in my mid-20s, and I was born prematurely at 8 months of pregnancy.
+My vision has recently declined rapidly. I have been diagnosed for immature retina.
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;overall_chain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;symptom&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;symptom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;factors&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;factors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ranked_diagnosis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;8&quot;&gt;
+&lt;li&gt;결과 확인&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/result2.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;explain&quot;&gt;
+왜인지 Open AI 모델 하나만 가지고 한 경우보다 정확도가 떨어짐.&lt;br /&gt;
+Prompt Engineering이 필요함.&lt;br /&gt;
+temperature가 0에 가까울수록 높은 정확도를 보임.&lt;br /&gt;
+temperature가 1에 가까울수록 창의적인 결과를 내기 때문에 이런 결과가 나온 것이라 예상됨.
+&lt;div&gt;
+&lt;h4&gt;출처&lt;/h4&gt;
+&lt;a href=&quot;https://medium.com/@astropomeai/implementing-the-tree-of-thoughts-in-langchains-chain-f2ebc5864fac&quot;&gt;Implementing the Tree of Thoughts in LangChain’s Chain&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="LLM" /><category term="Intern" /><summary type="html">ToT(Tree of Thoughts) ToT(Tree of Thoughts)는 CoT(Chain of Thoughts)를 확장시킨 개념. CoT에서는 LLM들 사이의 생각을 선형적으로 연결하기 때문에 중간에 잘못된 생각이 끼어들면 이 잘못된 생각이 결과까지 전파된다는 문제가 있었음. 그러나 ToT에서는 중간에 여러 생각들을 평가하고 잘못된 생각은 버리기 때문에 이러한 문제가 적게 발생함. 2024년 초에 Google에서 발표할 예정인 Multi-Modal LLM Model인 Gemini가 ToT를 사용할 예정이라고함. 필요한 패키지들 설치 &amp;gt; pip install openai &amp;gt; pip install langchain 모듈들 import하고 Open AI API key를 환경변수에 저장 ```python import subprocess import os from langchain.chains import LLMChain from langchain.llms import OpenAI from langchain.prompts import PromptTemplate from langchain.chat_models import ChatOpenAI import openai from langchain.chains import SequentialChain</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 ELP 개발 - asyncio</title><link href="http://localhost:4000/python/intern/2023/12/04/grpc3.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 ELP 개발 - asyncio" /><published>2023-12-04T15:04:23+09:00</published><updated>2023-12-04T15:04:23+09:00</updated><id>http://localhost:4000/python/intern/2023/12/04/grpc3</id><content type="html" xml:base="http://localhost:4000/python/intern/2023/12/04/grpc3.html">&lt;h1 id=&quot;python-asyncio&quot;&gt;Python asyncio&lt;/h1&gt;
 &lt;h3&gt;동기와 비동기&lt;/h3&gt;
 &lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/async.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;div class=&quot;explain&quot;&gt;
@@ -610,179 +853,4 @@ data 필드는
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;h3&gt;추가적인 자료&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-bundles?hl=ko&amp;amp;cloudshell=false&quot;&gt;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-bundles?hl=ko&amp;amp;cloudshell=false&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Health_API" /><summary type="html">Bundle로 리소스 관리하기 FHIR Bundle FHIR Bundle을 사용해서 리소스에 대한 생성, 업데이트, 삭제 등의 작업을 한꺼번에 수행 할 수 있다. 번들의 유형에 따라 번들의 작업 수행 방법이 결정된다. batch: 작업을 여러 독립적인 요청으로 수행 transaction: 작업을 서로 의존되는 여러 요청으로 실행 번들 유형이 batch인 경우 작업이 실패하면 Cloud Healthcare API가 번들에서 나머지 작업을 수행&amp;lt;/br&amp;gt; 번들의 유형이 transaction이면 작업이 실패하면 Cloud Healthcare API가 작업 실행을 중지하고 트랜잭션을 롤백함 -&amp;nbsp;Bundle로 한번의 요청으로 리소스를 생성하고 삭제 { &quot;resourceType&quot;: &quot;Bundle&quot;, &quot;id&quot;: &quot;bundle-transaction&quot;, &quot;meta&quot;: { &quot;lastUpdated&quot;: &quot;2018-03-11T11:22:16Z&quot; }, &quot;type&quot;: &quot;transaction&quot;, &quot;entry&quot;: [ { &quot;resource&quot;: { &quot;resourceType&quot;: &quot;Patient&quot;, &quot;name&quot;: [ { &quot;family&quot;: &quot;Smith&quot;, &quot;given&quot;: [ &quot;Darcy&quot; ] } ], &quot;gender&quot;: &quot;female&quot;, &quot;address&quot;: [ { &quot;line&quot;: [ &quot;123 Main St.&quot; ], &quot;city&quot;: &quot;Anycity&quot;, &quot;state&quot;: &quot;CA&quot;, &quot;postalCode&quot;: &quot;12345&quot; } ] }, &quot;request&quot;: { &quot;method&quot;: &quot;POST&quot;, &quot;url&quot;: &quot;Patient&quot; } }, { &quot;request&quot;: { &quot;method&quot;: &quot;DELETE&quot;, &quot;url&quot;: &quot;Patient/1234567890&quot; } } ] } Bundle.json curl -X POST \ -H &quot;Content-Type: application/fhir+json; charset=utf-8&quot; \ -H &quot;Authorization: Bearer $(gcloud auth application-default print-access-token)&quot; \ --data @Bundle.json \ &quot;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir&quot;</summary></entry><entry><title type="html">Photos-scenery</title><link href="http://localhost:4000/photos/2023/09/27/healing_pic.html" rel="alternate" type="text/html" title="Photos-scenery" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/photos/2023/09/27/healing_pic</id><content type="html" xml:base="http://localhost:4000/photos/2023/09/27/healing_pic.html">&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic1.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic2.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic3.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic4.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic5.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic6.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic7.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic17.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic8.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic9.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic10.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic11.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic12.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic13.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic14.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic15.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic16.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic18.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img class=&quot;album&quot; src=&quot;/public/img/pic19.jpg&quot; alt=&quot;relative&quot; /&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;</content><author><name></name></author><category term="Photos" /><summary type="html"></summary></entry><entry><title type="html">Google Cloud Health API-FHIR CRUD(2)</title><link href="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html" rel="alternate" type="text/html" title="Google Cloud Health API-FHIR CRUD(2)" /><published>2023-09-27T22:46:23+09:00</published><updated>2023-09-27T22:46:23+09:00</updated><id>http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2</id><content type="html" xml:base="http://localhost:4000/health_api/2023/09/27/healthcare_api_fhir2.html">&lt;h1 id=&quot;fhir-리소스-crud2&quot;&gt;FHIR 리소스 CRUD(2)&lt;/h1&gt;
-
-&lt;h3&gt;FHIR 리소스 업데이트(Update)&lt;/h3&gt;
-&lt;div class=&quot;explain&quot;&gt;
-Update는 리소스의 전체가 업데이트가 된다는 점에서 Patch와 차이가 있다.&lt;br /&gt;
-업데이트 내용을 담고 있는 리소스와 업데이트하는 리소스들은 동일한 id를 가지고 있어야 한다.
-&lt;/div&gt;
-&lt;h4&gt;-&amp;nbsp;Observation 리소스 업데이트&lt;/h4&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;resourceType&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Observation&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;OBSERVATION_ID&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;final&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;reference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Patient/PATIENT_ID&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;effectiveDateTime&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2020-01-01T00:00:00+00:00&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;identifier&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my-code-system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ABC-12345&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;code&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;coding&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://loinc.org&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;code&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;8867-4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;display&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Heart rate&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;valueQuantity&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;120&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;unit&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bpm&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;encounter&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;reference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Encounter/ENCOUNTER_ID&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;&lt;span class=&quot;file&quot;&gt;request.json&lt;/span&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; PUT &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;gcloud auth print-access-token&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Content-Type: application/json; charset=utf-8&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; @request.json &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation/OBSERVATION_ID&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h4&gt;-&amp;nbsp;조건부 Patient 리소스 업데이트&lt;/h4&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;조건부 업데이트는 한 번에 하나의 FHIR 리소스에만 적용 가능&lt;br /&gt;
-조건을 일치하는 리소스가 1개 초과로 존재하면 &lt;b&gt;412 Precondition Failed&lt;/b&gt;오류가 반환됨&lt;br /&gt;
-&lt;b&gt;identifier&lt;/b&gt;를 배타적으로 사용하여 조건과 일치하는 FHIR 리소스 확인
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;use&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;official&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;family&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Smith123&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;given&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Darcy0000&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;gender&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;female&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;birthDate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1970-01-01&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;PATIENT_ID&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;identifier&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;104&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;system&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my_code_system&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;resourceType&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Patient&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;
-&lt;span class=&quot;file&quot;&gt;Patient_new.json&lt;/span&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; PUT &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;gcloud auth print-access-token&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Content-Type: application/json; charset=utf-8&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; @Patient_new.json &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;s2&quot;&gt;&quot;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient?identifier=my_code_system|104&quot;&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;
-&lt;b&gt;identifier&lt;/b&gt;로 조건을 줌&lt;br /&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h3&gt;FHIR 리소스 패치(Patch)&lt;/h3&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;
-JSON 패치 문서에 지정된 작업을 적용하여 리소스의 일부를 업데이트
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;op&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;replace&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/birthDate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1990-01-01&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;
-&lt;span class=&quot;file&quot;&gt;patch.json&lt;/span&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; PATCH &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;gcloud auth print-access-token&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Content-Type: application/json-patch+json&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; @patch.json &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Patient/PATIENT_ID&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;
-Patch도 &lt;b&gt;identifier&lt;/b&gt;로 조건을 줘서 조건부 패치 가능
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h3&gt;FHIR 리소스 삭제(Delete)&lt;/h3&gt;
-&lt;h4&gt;-&amp;nbsp;Observation 리소스 삭제&lt;/h4&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; DELETE &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;gcloud auth print-access-token&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation/OBSERVATION_ID&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;explain&quot;&gt;
-&lt;p&gt;
-Delete도 &lt;b&gt;identifier&lt;/b&gt;로 조건을 줘서 조건부 삭제 가능
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; DELETE &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;gcloud auth application-default print-access-token&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/
-&lt;/span&gt;&lt;span class=&quot;go&quot;&gt;    DATASET_ID/fhirStores/FHIR_STORE_ID/fhir/Observation?identifier=my-code-system|ABC-12345&quot;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3&gt;추가적인 자료&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;amp;cloudshell=false&quot;&gt;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-resources?hl=ko&amp;amp;cloudshell=false&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Health_API" /><summary type="html">FHIR 리소스 CRUD(2)</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-bundles?hl=ko&amp;amp;cloudshell=false&quot;&gt;https://cloud.google.com/healthcare-api/docs/how-tos/fhir-bundles?hl=ko&amp;amp;cloudshell=false&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Health_API" /><summary type="html">Bundle로 리소스 관리하기 FHIR Bundle FHIR Bundle을 사용해서 리소스에 대한 생성, 업데이트, 삭제 등의 작업을 한꺼번에 수행 할 수 있다. 번들의 유형에 따라 번들의 작업 수행 방법이 결정된다. batch: 작업을 여러 독립적인 요청으로 수행 transaction: 작업을 서로 의존되는 여러 요청으로 실행 번들 유형이 batch인 경우 작업이 실패하면 Cloud Healthcare API가 번들에서 나머지 작업을 수행&amp;lt;/br&amp;gt; 번들의 유형이 transaction이면 작업이 실패하면 Cloud Healthcare API가 작업 실행을 중지하고 트랜잭션을 롤백함 -&amp;nbsp;Bundle로 한번의 요청으로 리소스를 생성하고 삭제 { &quot;resourceType&quot;: &quot;Bundle&quot;, &quot;id&quot;: &quot;bundle-transaction&quot;, &quot;meta&quot;: { &quot;lastUpdated&quot;: &quot;2018-03-11T11:22:16Z&quot; }, &quot;type&quot;: &quot;transaction&quot;, &quot;entry&quot;: [ { &quot;resource&quot;: { &quot;resourceType&quot;: &quot;Patient&quot;, &quot;name&quot;: [ { &quot;family&quot;: &quot;Smith&quot;, &quot;given&quot;: [ &quot;Darcy&quot; ] } ], &quot;gender&quot;: &quot;female&quot;, &quot;address&quot;: [ { &quot;line&quot;: [ &quot;123 Main St.&quot; ], &quot;city&quot;: &quot;Anycity&quot;, &quot;state&quot;: &quot;CA&quot;, &quot;postalCode&quot;: &quot;12345&quot; } ] }, &quot;request&quot;: { &quot;method&quot;: &quot;POST&quot;, &quot;url&quot;: &quot;Patient&quot; } }, { &quot;request&quot;: { &quot;method&quot;: &quot;DELETE&quot;, &quot;url&quot;: &quot;Patient/1234567890&quot; } } ] } Bundle.json curl -X POST \ -H &quot;Content-Type: application/fhir+json; charset=utf-8&quot; \ -H &quot;Authorization: Bearer $(gcloud auth application-default print-access-token)&quot; \ --data @Bundle.json \ &quot;https://healthcare.googleapis.com/v1/projects/PROJECT_ID/locations/LOCATION/datasets/DATASET_ID/fhirStores/FHIR_STORE_ID/fhir&quot;</summary></entry></feed>

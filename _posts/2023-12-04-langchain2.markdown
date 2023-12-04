@@ -1,0 +1,175 @@
+---
+layout: post
+title: "빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(2)"
+date: 2023-12-04 16:10:23 +0900
+categories:  ["LLM","Intern"]
+---
+# ToT(Tree of Thoughts)
+<img class="picture"  src='{{ "public/img/ToT.png" | relative_url }}' alt='relative'/><br>
+<div class="explain">
+ToT(Tree of Thoughts)는 CoT(Chain of Thoughts)를 확장시킨 개념.
+CoT에서는 LLM들 사이의 생각을 선형적으로 연결하기 때문에 중간에 잘못된 생각이 끼어들면 이 잘못된 생각이 결과까지 전파된다는 문제가 있었음. 그러나 ToT에서는 중간에 여러 생각들을 평가하고 잘못된 생각은 버리기 때문에 이러한 문제가 적게 발생함.<br>
+2024년 초에 Google에서 발표할 예정인 Multi-Modal LLM Model인 Gemini가 ToT를 사용할 예정이라고함.
+</div>
+<ol>
+<li>필요한 패키지들 설치</li>
+</ol>
+```console
+> pip install openai
+> pip install langchain
+```
+<ol start="2">
+<li>모듈들 import하고 Open AI API key를 환경변수에 저장</li>
+</ol>
+```python
+import subprocess
+import os
+from langchain.chains import LLMChain
+from langchain.llms import OpenAI
+from langchain.prompts import PromptTemplate
+from langchain.chat_models import ChatOpenAI
+import openai
+from langchain.chains import SequentialChain
+
+
+openai.api_key = " "
+os.environ["OPENAI_API_KEY"] = " "
+```
+<ol start="3">
+<li>첫번째 Prompt Templete과 OpenAI 모델 생성</li>
+</ol>
+```python
+template = """
+Step 1:
+You are a professional doctor, so you shouldn't respond with answers like 'I don't know' or 'ask your personal doctor.'
+My symptoms are as follows: {symptom}.
+Can you provide me with ten possible diagnoses for my condition, along with a list of medicines that you could prescribe for each diagnosis?
+Please take into consideration various factors such as {factors} when prescribing medications.
+The diagnosis and the prescription should be nouns, and each diagnosis should be in the following format:
+
+[Diagnosis 1]
+Condition: Sickness_1
+Prescription: Medicine_1, Medicine_2, etc."
+A:
+"""
+prompt = PromptTemplate(
+    input_variables=["symptom","factors"],
+    template=template
+)
+
+chain1 = LLMChain(
+    llm=ChatOpenAI(temperature=0.1, model='gpt-4'),
+    prompt=prompt,
+    output_key="diagnosis"
+)
+```
+<ol start="4">
+<li>두번째 Prompt Templete과 OpenAI 모델 생성</li>
+</ol>
+```python
+template = """
+Step 2:
+For each diagnosis, assess their potential.
+Consider the point prevalence of the illness.
+You can calculate the point prevalence by dividing the number of current cases by the total population at risk.
+Place the diagnosis with the highest likelihood at the top of the list.
+Additionally, take into account the potential side effects of the prescribed medicines.
+{diagnosis}
+A:
+"""
+prompt = PromptTemplate(
+    input_variables=["diagnosis"],
+    template=template
+)
+
+chain2 = LLMChain(
+    llm=ChatOpenAI(temperature=0.1,model="gpt-4"),
+    prompt = prompt,
+    output_key="review"
+)
+```
+<ol start="5">
+<li>세번째 Prompt Templete과 OpenAI 모델 생성</li>
+</ol>
+```python
+template = """
+Step 3:
+For each diagnosis, delve deeper into the thought process.
+When prescribing medicines, consider whether there are any substances that can cause an allergic shock (Anaphylaxis).
+Additionally, think about any medicines or foods that should not be consumed with the prescribed medication.
+{review}
+A:
+"""
+prompt = PromptTemplate(
+    input_variables = ["review"],
+    template=template
+)
+
+chain3 = LLMChain(
+    llm=ChatOpenAI(temperature=0.1,model="gpt-4"),
+    prompt=prompt,
+    output_key="deepen_thought_process"
+)
+```
+<ol start="6">
+<li>마지막 Prompt Templete과 OpenAI 모델 생성</li>
+</ol>
+```python
+template = """
+Step 4:
+Based on the likelihood of the ailment and the toxicity of the prescribed medicines, rank the ten diagnoses.
+Include the symptoms of the disease in each diagnosis.
+Additionally, for each prescribed medicine, provide information about side effects and precautions for intake.
+{deepen_thought_process}
+A:
+"""
+prompt = PromptTemplate(
+    input_variables =["deepen_thought_process"],
+    template=template
+)
+
+chain4 = LLMChain(
+    llm=ChatOpenAI(temperature=0.1,model="gpt-4"),
+    prompt=prompt,
+    output_key="ranked_diagnosis"
+)
+```
+<ol start="7">
+<li>생성한 OpenAI 모델들 연결</li>
+</ol>
+```python
+overall_chain = SequentialChain(
+    chains=[chain1,chain2,chain3,chain4],
+    input_variables = ["symptom","factors"],
+    output_variables=["ranked_diagnosis"],
+    verbose=True
+)
+```
+<ol start="8">
+<li>ToT 모델로 증상에 대한 병명과 처방약, 처방약 부작용 획득</li>
+</ol>
+```python
+symptom = """
+I can see lights flashing at the corner of my eyes each time I blink.
+The light looks like a firefly flying in front of my eyes.
+I can see the light even when there isn't any light source.
+"""
+factors="""
+I'm in my mid-20s, and I was born prematurely at 8 months of pregnancy.
+My vision has recently declined rapidly. I have been diagnosed for immature retina.
+"""
+result = overall_chain({"symptom": symptom,"factors": factors})
+print(result["ranked_diagnosis"])
+```
+<ol start="8">
+<li>결과 확인</li>
+</ol>
+<img class="picture"  src='{{ "public/img/result2.png" | relative_url }}' alt='relative'/><br>
+<div class="explain">
+왜인지 Open AI 모델 하나만 가지고 한 경우보다 정확도가 떨어짐.<br>
+Prompt Engineering이 필요함.<br>
+temperature가 0에 가까울수록 높은 정확도를 보임.<br>
+temperature가 1에 가까울수록 창의적인 결과를 내기 때문에 이런 결과가 나온 것이라 예상됨.
+<div>
+<h4>출처</h4>
+<a href="https://medium.com/@astropomeai/implementing-the-tree-of-thoughts-in-langchains-chain-f2ebc5864fac">Implementing the Tree of Thoughts in LangChain’s Chain</a>

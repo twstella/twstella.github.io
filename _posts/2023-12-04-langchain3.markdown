@@ -1,0 +1,29 @@
+---
+layout: post
+title: "빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(3)"
+date: 2023-12-04 16:10:23 +0900
+categories:  ["LLM","Intern"]
+---
+# Langchain으로 Huggingface의 llama 모델 사용하기
+<ol>
+<li>필요한 패키지 다운</li>
+</ol>
+```console
+> pip install langchain
+> pip install huggingface_hub
+> pip install -qU transformers
+```
+<ol start="2">
+<li>필요한 모듈 다운로드하고 Huggingface에서 llama 모델 다운로드</li>
+</ol>
+```python
+from langchain.llms import LlamaCpp
+from langchain import PromptTemplate, LLMChain
+from langchain.callbacks.manager import CallbackManager
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from huggingface_hub import hf_hub_download
+
+hf_hub_download(repo_id="TheBloke/Llama-2-7B-Chat-GGML", filename="llama-2-7b-chat.ggmlv3.q2_K.bin", cache_dir="./models")
+```
+<h4>출처</h4>
+<a href="https://knowslog.tistory.com/entry/Langchain%EC%9C%BC%EB%A1%9C-LLaMA2-cpp-%EB%B2%84%EC%A0%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">Langchain으로 LLaMA2 cpp 버전 사용하기</a>

@@ -1,0 +1,76 @@
+---
+layout: post
+title: "빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)"
+date: 2023-12-04 16:10:23 +0900
+categories:  ["LLM","Intern"]
+---
+# Langchain
+<ol>
+<li>필요한 패키지들 설치</li>
+</ol>
+```console
+> pip install openai
+> pip install langchain
+```
+<ol start="2">
+<li>모듈들 import하고 Open AI API key를 환경변수에 저장</li>
+</ol>
+```python
+import subprocess
+import os
+from langchain.chains import LLMChain
+from langchain.llms import OpenAI
+from langchain.prompts import PromptTemplate
+from langchain.chat_models import ChatOpenAI
+import openai
+from langchain.chains import SequentialChain
+
+
+openai.api_key = " "
+os.environ["OPENAI_API_KEY"] = " "
+```
+<ol start="3">
+<li>프롬프트 템플릿 생성</li>
+</ol>
+```python
+template = """
+You are a professional doctor, so you shouldn't respond with answers like 'I don't know' or 'ask your personal doctor.'
+My symptoms are as follows: {symptom}.
+Can you provide me with five possible diagnoses for my condition, along with a list of medicines that you could prescribe for each diagnosis?
+Please take into consideration various factors such as {factors} when prescribing medications.
+The diagnosis and the prescription should be nouns, and each diagnosis should be in the following format:
+
+[Diagnosis 1]
+Condition: Sickness_1
+Prescription: Medicine_1, Medicine_2, etc."
+A:
+"""
+prompt = PromptTemplate(
+    input_variables=["symptom","factors"],
+    template=template
+)
+```
+<ol start = "4">
+<li>lang chain의 OpenAI 모델 사용</li>
+</ol>
+```python
+symptom = """
+I can see lights flashing at the corner of my eyes each time I blink.
+The light looks like a firefly flying in front of my eyes.
+I can see the light even when there isn't any light source.
+"""
+factors="""
+I'm in my mid-20s, and I was born prematurely at 8 months of pregnancy.
+My vision has recently declined rapidly. I have been diagnosed for immature retina.
+"""
+llm = OpenAI(temperature=0.1)
+print(llm(prompt.format(symptom=symptom,factors=factors)))
+```
+<ol start = "5">
+<li>결과 확인</li>
+</ol>
+<img class="picture"  src='{{ "public/img/result1.png" | relative_url }}' alt='relative'/><br>
+<div class="explain">
+temperature가 0에 가까울수록 높은 정확도를 보임.<br>
+temperature가 1에 가까울수록 창의적인 결과를 내기 때문에 이런 결과가 나온 것이라 예상됨.
+<div>
