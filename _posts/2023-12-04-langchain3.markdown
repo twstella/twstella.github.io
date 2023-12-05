@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(3)"
+title: "빅데이터 혁신 융합대학 인턴 LLM 개발 - Llama with Langchain"
 date: 2023-12-04 16:10:23 +0900
 categories:  ["LLM","Intern"]
 ---
@@ -14,16 +14,98 @@ categories:  ["LLM","Intern"]
 > pip install -qU transformers
 ```
 <ol start="2">
-<li>필요한 모듈 다운로드하고 Huggingface에서 llama 모델 다운로드</li>
+<li>환경변수에 HuggingFace Hub API 저장하기</li>
 </ol>
+```python
+import os
+os.environ['HUGGINGFACEHUB_API_TOKEN'] = " "
+```
+<ol start="3">
+<li>HuggingFace의 Model 사용하기</li>
+</ol>
+```python
+from langchain import LLMChain
+from langchain.prompts import PromptTemplate
+from langchain.llms import HuggingFaceHub
+
+repo_id = "TheBloke/Llama-2-7B-Chat-GGML"
+question = "What are the special features of Norwegian forest cat?"
+template = """
+Question: {question}
+Answer:
+"""
+prompt = PromptTemplate(template=template, input_variables = ["question"])
+
+llm = HuggingFaceHub(
+    repo_id = repo_id,
+    model_kwargs={
+        "temperature":0.2,
+        "max_length":128
+    }
+)
+llm_chain = LLMChain(prompt=prompt,llm=llm)
+
+print(llm_chain.run(question=question))
+```
+<div class="explain">
+HuggingFace 무료버전을 사용해서 그런지 <span style="color:red">ValueError: Error raised by inference API: Model requires a Pro subscription; check out hf.co/pricing to learn more. Make sure to include your HF token in your query.</span>라는 에러가 뜸. <br>
+HuggingFace Hub에서 로컬로 모델을 다운로드 받아서 사용하는 방법을 해봐야함.
+</div>
+<ol>
+<li>필요한 모듈들 import</li>
+</ol>
+
 ```python
 from langchain.llms import LlamaCpp
 from langchain import PromptTemplate, LLMChain
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from huggingface_hub import hf_hub_download
-
-hf_hub_download(repo_id="TheBloke/Llama-2-7B-Chat-GGML", filename="llama-2-7b-chat.ggmlv3.q2_K.bin", cache_dir="./models")
 ```
+<ol start="2">
+<li>HuggingFace에서 모델 파일을 다운받음</li>
+</ol>
+```python
+hf_hub_download(repo_id="TheBloke/Llama-2-70B-Chat-GGUF", filename="llama-2-70b-chat.Q2_K.gguf", cache_dir="./models")
+```
+<ol start="3">
+<li>LlamaCpp를 사용하기 위해서는 <b>llama-cpp-pyton</b>을 설치해야함</li>
+</ol>
+
+```console
+> pip install llama-cpp-python
+```
+
+<ol start="4">
+<li>다운받은 모델을 사용</li>
+</ol>
+```python
+callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
+llm = LlamaCpp(
+    model_path="/content/models/models--TheBloke--Llama-2-70B-Chat-GGUF/snapshots/798ec30fbdbdde983a1189c8396ea41b8980aa16/llama-2-70b-chat.Q2_K.gguf",
+    temperature=0.75,
+    max_tokens=2000,
+    top_p=1,
+    callback_manager=callback_manager,
+    verbose=True
+)
+prompt = """
+Question: A rap battle between Stephen Colbert and John Oliver
+"""
+llm(prompt)
+```
+<div class="explain">
+Callback은 token-wise streaming을 지원한다고 함.<br>
+callback manager를 사용하려면 LlamaCpp에서 verbose인자에 True를 주어야한다고함.<br>
+CPU로 돌리니까 시간 엄청 걸림. 반드시 GPU를 사용해야함.
+</div>
+<ol start="5">
+<li>결과 확인</li>
+</ol>
+<img class="picture"  src='{{ "public/img/result3.png" | relative_url }}' alt='relative'/><br>
+<div class="explain">
+GPU로 돌리면 결과에서 BLAS가 1이라고함.
+</div>
 <h4>출처</h4>
-<a href="https://knowslog.tistory.com/entry/Langchain%EC%9C%BC%EB%A1%9C-LLaMA2-cpp-%EB%B2%84%EC%A0%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">Langchain으로 LLaMA2 cpp 버전 사용하기</a>
+<a href="https://knowslog.tistory.com/entry/Langchain%EC%9C%BC%EB%A1%9C-LLaMA2-cpp-%EB%B2%84%EC%A0%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">Langchain으로 LLaMA2 cpp 버전 사용하기</a><br>
+<a href="https://python.langchain.com/docs/integrations/llms/llamacpp">Llama.cpp</a>

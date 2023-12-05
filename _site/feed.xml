@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-04T23:12:06+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain1.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain1</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain1.html">&lt;h1 id=&quot;langchain&quot;&gt;Langchain&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-05T18:00:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>Blog Written by Seowoo Lee</subtitle><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain1.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(1)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain1</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain1.html">&lt;h1 id=&quot;langchain&quot;&gt;Langchain&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;필요한 패키지들 설치&lt;/li&gt;
 &lt;/ol&gt;
@@ -64,7 +64,7 @@ My vision has recently declined rapidly. I have been diagnosed for immature reti
 temperature가 0에 가까울수록 높은 정확도를 보임.&lt;br /&gt;
 temperature가 1에 가까울수록 창의적인 결과를 내기 때문에 이런 결과가 나온 것이라 예상됨.
 &lt;div&gt;
-&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="LLM" /><category term="Intern" /><summary type="html">Langchain 필요한 패키지들 설치 &amp;gt; pip install openai &amp;gt; pip install langchain 모듈들 import하고 Open AI API key를 환경변수에 저장 ```python import subprocess import os from langchain.chains import LLMChain from langchain.llms import OpenAI from langchain.prompts import PromptTemplate from langchain.chat_models import ChatOpenAI import openai from langchain.chains import SequentialChain</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(3)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain3.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(3)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain3</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain3.html">&lt;h1 id=&quot;langchain으로-huggingface의-llama-모델-사용하기&quot;&gt;Langchain으로 Huggingface의 llama 모델 사용하기&lt;/h1&gt;
+&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="LLM" /><category term="Intern" /><summary type="html">Langchain 필요한 패키지들 설치 &amp;gt; pip install openai &amp;gt; pip install langchain 모듈들 import하고 Open AI API key를 환경변수에 저장 ```python import subprocess import os from langchain.chains import LLMChain from langchain.llms import OpenAI from langchain.prompts import PromptTemplate from langchain.chat_models import ChatOpenAI import openai from langchain.chains import SequentialChain</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Llama with Langchain</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain3.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Llama with Langchain" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain3</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain3.html">&lt;h1 id=&quot;langchain으로-huggingface의-llama-모델-사용하기&quot;&gt;Langchain으로 Huggingface의 llama 모델 사용하기&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;필요한 패키지 다운&lt;/li&gt;
 &lt;/ol&gt;
@@ -73,18 +73,95 @@ temperature가 1에 가까울수록 창의적인 결과를 내기 때문에 이�
 &lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-qU&lt;/span&gt; transformers
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;필요한 모듈 다운로드하고 Huggingface에서 llama 모델 다운로드&lt;/li&gt;
+&lt;li&gt;환경변수에 HuggingFace Hub API 저장하기&lt;/li&gt;
 &lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;HUGGINGFACEHUB_API_TOKEN&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;HuggingFace의 Model 사용하기&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.prompts&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.llms&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HuggingFaceHub&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;repo_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TheBloke/Llama-2-7B-Chat-GGML&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;question&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;What are the special features of Norwegian forest cat?&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Question: {question}
+Answer:
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_variables&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;question&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HuggingFaceHub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;repo_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;repo_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;model_kwargs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;temperature&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;max_length&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;128&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;llm_chain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llm_chain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;question&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;question&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;explain&quot;&gt;
+HuggingFace 무료버전을 사용해서 그런지 &lt;span style=&quot;color:red&quot;&gt;ValueError: Error raised by inference API: Model requires a Pro subscription; check out hf.co/pricing to learn more. Make sure to include your HF token in your query.&lt;/span&gt;라는 에러가 뜸. &lt;br /&gt;
+HuggingFace Hub에서 로컬로 모델을 다운로드 받아서 사용하는 방법을 해봐야함.
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;필요한 모듈들 import&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.llms&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LlamaCpp&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PromptTemplate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLMChain&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.callbacks.manager&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CallbackManager&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;langchain.callbacks.streaming_stdout&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StreamingStdOutCallbackHandler&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;huggingface_hub&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hf_hub_download&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;hf_hub_download&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repo_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TheBloke/Llama-2-7B-Chat-GGML&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;llama-2-7b-chat.ggmlv3.q2_K.bin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cache_dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./models&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;HuggingFace에서 모델 파일을 다운받음&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;hf_hub_download&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repo_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TheBloke/Llama-2-70B-Chat-GGUF&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;llama-2-70b-chat.Q2_K.gguf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cache_dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./models&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;LlamaCpp를 사용하기 위해서는 &lt;b&gt;llama-cpp-pyton&lt;/b&gt;을 설치해야함&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;llama-cpp-python
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;다운받은 모델을 사용&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;callback_manager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CallbackManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;StreamingStdOutCallbackHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()])&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LlamaCpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;model_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/content/models/models--TheBloke--Llama-2-70B-Chat-GGUF/snapshots/798ec30fbdbdde983a1189c8396ea41b8980aa16/llama-2-70b-chat.Q2_K.gguf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;temperature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;max_tokens&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;top_p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;callback_manager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;callback_manager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;verbose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Question: A rap battle between Stephen Colbert and John Oliver
+&quot;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;llm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prompt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;explain&quot;&gt;
+Callback은 token-wise streaming을 지원한다고 함.&lt;br /&gt;
+callback manager를 사용하려면 LlamaCpp에서 verbose인자에 True를 주어야한다고함.&lt;br /&gt;
+CPU로 돌리니까 시간 엄청 걸림. 반드시 GPU를 사용해야함.
+&lt;/div&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;결과 확인&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/result3.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;explain&quot;&gt;
+GPU로 돌리면 결과에서 BLAS가 1이라고함.
+&lt;/div&gt;
 &lt;h4&gt;출처&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://knowslog.tistory.com/entry/Langchain%EC%9C%BC%EB%A1%9C-LLaMA2-cpp-%EB%B2%84%EC%A0%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0&quot;&gt;Langchain으로 LLaMA2 cpp 버전 사용하기&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="LLM" /><category term="Intern" /><summary type="html">Langchain으로 Huggingface의 llama 모델 사용하기 필요한 패키지 다운 &amp;gt; pip install langchain &amp;gt; pip install huggingface_hub &amp;gt; pip install -qU transformers 필요한 모듈 다운로드하고 Huggingface에서 llama 모델 다운로드 ```python from langchain.llms import LlamaCpp from langchain import PromptTemplate, LLMChain from langchain.callbacks.manager import CallbackManager from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler from huggingface_hub import hf_hub_download</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(2)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain2.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(2)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain2</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain2.html">&lt;h1 id=&quot;tottree-of-thoughts&quot;&gt;ToT(Tree of Thoughts)&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://knowslog.tistory.com/entry/Langchain%EC%9C%BC%EB%A1%9C-LLaMA2-cpp-%EB%B2%84%EC%A0%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0&quot;&gt;Langchain으로 LLaMA2 cpp 버전 사용하기&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://python.langchain.com/docs/integrations/llms/llamacpp&quot;&gt;Llama.cpp&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="LLM" /><category term="Intern" /><summary type="html">Langchain으로 Huggingface의 llama 모델 사용하기 필요한 패키지 다운 &amp;gt; pip install langchain &amp;gt; pip install huggingface_hub &amp;gt; pip install -qU transformers 환경변수에 HuggingFace Hub API 저장하기 import os os.environ[&apos;HUGGINGFACEHUB_API_TOKEN&apos;] = &quot; &quot; HuggingFace의 Model 사용하기 ```python from langchain import LLMChain from langchain.prompts import PromptTemplate from langchain.llms import HuggingFaceHub</summary></entry><entry><title type="html">빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(2)</title><link href="http://localhost:4000/llm/intern/2023/12/04/langchain2.html" rel="alternate" type="text/html" title="빅데이터 혁신 융합대학 인턴 LLM 개발 - Langchain(2)" /><published>2023-12-04T16:10:23+09:00</published><updated>2023-12-04T16:10:23+09:00</updated><id>http://localhost:4000/llm/intern/2023/12/04/langchain2</id><content type="html" xml:base="http://localhost:4000/llm/intern/2023/12/04/langchain2.html">&lt;h1 id=&quot;tottree-of-thoughts&quot;&gt;ToT(Tree of Thoughts)&lt;/h1&gt;
 &lt;p&gt;&lt;img class=&quot;picture&quot; src=&quot;/public/img/ToT.png&quot; alt=&quot;relative&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;div class=&quot;explain&quot;&gt;
 ToT(Tree of Thoughts)는 CoT(Chain of Thoughts)를 확장시킨 개념.
