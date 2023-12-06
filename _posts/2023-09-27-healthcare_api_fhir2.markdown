@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Google Cloud Health API-FHIR CRUD(2)"
+title: "Google Cloud Healthcare API-FHIR CRUD(2)"
 date: 2023-09-27 22:46:23 +0900
-category: Health_API
+category: Healthcare_API
 ---
 # FHIR 리소스 CRUD(2)
 

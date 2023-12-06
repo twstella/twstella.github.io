@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Google Cloud Health API-시작하기"
+title: "Google Cloud Healthcare API-시작하기"
 date: 2023-09-26 22:46:23 +0900
-category: Health_API
+category: Healthcare_API
 ---
 # 시작하기 전에
 <ol>

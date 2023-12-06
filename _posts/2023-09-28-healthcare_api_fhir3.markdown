@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Google Cloud Health API-Bundle로 리소스 관리하기"
+title: "Google Cloud Healthcare API-Bundle로 리소스 관리하기"
 date: 2023-09-28 16:07:00 +0900
-category: Health_API
+category: Healthcare_API
 ---
 # Bundle로 리소스 관리하기
 <h3>FHIR Bundle</h3>

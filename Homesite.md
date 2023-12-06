@@ -51,6 +51,7 @@ permalink: /about/
 <li>Tools/Library: Logica Sandbox, DeepChem, ScikitLearn,PyTorch, Keras, MySQL, Tensorflow </li>
 </ul>
 </p>
+<!--
 <p>
 <h4><b>Projects</b></h4>
 <ul>
@@ -121,6 +122,7 @@ permalink: /about/
 <li>Teps: 455 (2023.06)</li>
 </ul>
 </p>
+-->
 <p>
 <b>Papers</b>
 <ul>
