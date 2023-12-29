@@ -1,11 +1,13 @@
 # TODO
 -ToT
--grpc
 -Spring
--Langchain
 -RAG
+-LLM
+-Medical assistant
 -Flutter
 -Bigdata Intern
 -HL7 FHIR
+-NLP
+
 
 > bundler exec jekyll serve --trace
