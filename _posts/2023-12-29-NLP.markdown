@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "빅데이터 혁신 융합대학 인턴 LLM 개발- NLP 기본 개념"
-date: 2023-12-19 09:00:23 +0900
+title: "빅데이터 혁신 융합대학 인턴 LLM 개발- NLP 기본 개념(1)"
+date: 2023-12-29 09:00:23 +0900
 categories:  ["NLP","Intern"]
 ---
-# NLP 기본 개념
+# NLP 기본 개념(1)
 <h3>자연어 처리를 위한 패키지</h3>
 <ul>
 <li>NLTK<br>
@@ -36,6 +36,7 @@ JPype는 https://github.com/jpype-project/jpype/releases에서 다운받을 수 
 ```console
 > pip install JPype1-0.6.3-cp36-cp36m-win_amd64.whl
 ```
+<h3> 텍스트 전처리</h3>
 <ol>
 <li>Tokenization<br>
 <div class="explain">토큰화(Tokenization)은 코퍼스(텍스트 데이터)를 토큰 단위로 나누는 작업을 의미한다. 토큰의 단위는 단어, 단어구, 문장 등 다양할 수 있다.
@@ -242,5 +243,21 @@ one_hot = to_categorical(encoded)
 print(one_hot)
 ```
 <div class="explain"> 원-핫 인코딩은 단어의 개수가 늘어날 수록 벡터를 저장하기 위한 공간이 늘어난다는 단점이 있다.또한, 단어의 유사도를 표현하지 못한다. 이러한 단점을 해결하기 위해서는 카운팅 기반의 LSA(잠재 의미 분석), HAL과 예측 기반으로 벡터화하는 NNLM,RNNLM,Word2Vec, FastText 등을 사용할 수 있다.이 두 방법을 모두 사용하는 Glove라는 방법도 존재한다. </div>
+
+<ol start="4">
+<li>Languge Model<br>
+<div class="explain">언어 모델(Language Model)은 단어 시퀀스에 확률을 부여해 가장 자연스러운 단어들의 시퀀스인 문장을 만드는 모델이다. 통계적 언어 모델은 통계적으로 언어를 예측한다. 통계적 언어 모델(Statistical Language Model)을 줄여서 SLM이라 한다.<br>
+<h4>조건부 확률</h4>
+조건부 확률은 사건 <span class="math">A</span>가 발생핬을 때 사건<span class="math">B</span>이 발생할 확률로<br> <span class="math">P(B|A)=P(A,B)/P(A)<br>P(A,B)=P(A)*P(B|A)</span>이다. 3개의 확률이 조건부 확률 관계일 때는 <span class="math">P(A,B,C)=P(A)*P(B|A)*P(C|A,B)</span>이다. 이를 일반화할 수 있다. <br>
+<span class="math">P(He is a boy)=P(He)*P(is|He)*P(a|He is)*P(boy|He is a)</span>이다.
+<h4>카운트 기반의 확률</h4>
+<span class="math">P(C|A,B)</span>는 다음 과 같이 구할 수 있다. <span class="math">P(a|He is)=count(He is a)/count(He is)</span> 하지만 이 방법은 방대한 데이터를 가지고 있어야 한다는 문제를 가지고 있다. 이렇게 충분한 데이터를 가지지 못하면 언어를 정확히 모델링하지 못하는 문제를 희소 문제(sparsity problem)라고 한다.
+<h4>N-gram</h4>
+n-gram은 n개의 연속적인 단어 나열을 의미한다. 코퍼스에서 n개의 단어 뭉치 단위로 끊어서 이를 하나의 토큰으로 간주한다. n이 2일때 He is a boy의 bigram은 He is ,is a, a boy이다. 이는 기준 단어의 앞 단어를 모두 표함하여 카운트를 하는 것이 아니라 앞 단어 중 임의의 개수의 단어만을 포함하여 카운트를 근사한다. 그러나 여전히 희소 문제가 존재하고 n의 값에 대한 tradeoff가 존재한다. N-gram Language Model의 대안으로 대체적으로 보다 성능이 우수한 인공신경망을 이용한 언어 모델을 많이 사용한다.<br>
+언어 모델을 평가하기 위해 PPL을 사용한다. PPL은 perplexity을 의미하며 PPL이 낮을수록 언어 모델의 성능이 좋다는 것을 의미한다. 문장 W에 대한 PPL을 구하기 위해서는 <span class="math">PPL(W)=sqrt(1/P(A,B,C,...,N),N)</span>로 구한다. PPL은 선택할 수 있는 가능한 경우의 수를 의미하는 분기계수(branching factor)이다. 다시 말하면, PPL은 언어 모델이 특정 시점에서 평균 몇 개의 선택지를 가지고 고민하고 있는지 의미한다.
+</div>
+</li>
+</ol>
+
 <h3>출처</h3>
 <a href="https://wikidocs.net/book/2155">딥러닝을 이용한 자연어 처리 입문</a>

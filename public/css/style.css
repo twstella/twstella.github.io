@@ -115,7 +115,7 @@ code {
 }
 
 .sidebar-brand > a {
-	font-size: 300%;
+	font-size: 180%;
 	font-family:  'Gelasio';
 	color: #222;
 }
@@ -135,7 +135,7 @@ code {
 }
 
 .nav-title {
-	font-size: 100%;
+	font-size: 50%;
 	font-family: "Noto Sans";
 	text-transform: uppercase;
 	border-bottom: 1px solid gray;
@@ -350,6 +350,9 @@ footer {
 .logo {
 	width: 30%;
 	height: auto;
+}
+.math {
+	font-family: Georgia, 'Times New Roman', Times, serif;
 }
 @media (max-width: 576px) {
 	article {
