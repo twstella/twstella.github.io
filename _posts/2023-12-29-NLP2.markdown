@@ -130,7 +130,84 @@ CBOW에서는 주변 단어를 통해 중심 단어를 예측했다면, Skip-gra
 Word2Vec의 출력층에서는 소프트맥스 함수를 지난 단어 집합의 크기의 벡터와 실제값인 원-핫 벡터와의 오차를 구하고 이를 기반으로 임베딩 테이블에 있는 모든 단어에 대한 임베딩 벡터 값을 업데이트한다.그러나 만약 단어의 집합의 크기가 수만 이상에 달하면 이 작업은 굉장히 무거운 작업이 된다. 네거티브 샘플링(Nagative Sampling)은 Word2Vec가 학습 과정에서 전체 단어 집합이 아니라 일부 단어 집합에만 집중할 수 있도록 하는 방법이다. 주변 단어들을 긍정, 랜덤으로 샘플링된 단어들을 부정으로 레이블링하면 이진 분류 문제를 위한 데이터셋이 된다. Skip-gram은 기본적으로 중심 단어를 입력, 주변 단어를 레이블로 한다. SGNS(Skip-gram with Negative Sampling)을 학습하기 위해서는 기존의 Skip-gram 데이터셋에서 중심 단어와 주변 단어를 각각 입력1, 입력2로 두고 실제 윈도우 크기 내에서 이웃 관계였으면 레이블을 1로 준다. 입력1(중심단어)과 주변 단어 관계가 아닌 단어들을 입력2로 삼기 위해서는 단어 집합에서 랜덤으로 단어들을 선택하고 레이블을 0으로 준다. 그리고 입력1인 중심 단어의 테이블 룩업을 위한 임베딩 테이블과 입력 2인 주변 단어의 테이블 룩업을 위한 임베딩 테이블을 준비한다. 각 단어는 임베딩 테이블을 테이블 룩업하여 임베딩 벡터로 변환한다. 그 후 중심 단어와 주변 단어의 내적값을 모델의 예측값으로 하고 레이블과의 오차를 역전파하여 중심 단어와 주변 단어의 임베딩 벡터 값을 업데이트한다. 
 <h4>GloVe</h4>
 LSA는 카운트 기반으로 코퍼스의 전체적인 통계 정보를 고려하기는 하지만 단어 의미 유추 작업(Analogy task)에는 성능이 떨어지고 Word2Vec은 예측 기반으로 단어 간 유추 작업에는 LSA보다 뛰어나지만 임베딩 벡터가 원도우 크기 내에서만 주변 단어를 고려하기 때문에 코퍼스의 전체적인 통계 정보를 반영하지 못한다. GloVe는 LSA의 메커니즘이었던 카운트 기반의 방법과 Word2Vec의 메커니즘이었던 예측 기반의 방법론 모두를 사용한다. 윈도우 기반 동시 등장 행랼(Window based Co-occurence Matrix)는 행과 열을 전체 단어 집합의 단어들로 구성하고 i단어의 윈도우 크기 내에서 k 단어가 등장한 횟수를 i행 k열에 기재한 행렬이다. 동시 등장 확률(Co-occurrence Probability)는 <span class="math">P(k|i)</span>로 동시 등장 행렬로부터 특정 단어 i의 전체 등장 횟수를 카운트하고 특정 단어가 등장했을 때 어떤 단어 k가 등장한 횟수를 카운트하여 계산한 조건부 확률이다.<br>
+GloVe의 핵심 아이디어는 임베딩 된 중심 단어와 주변 단어 벡터의 내적이 전체 코러스에서의 동시 등장 확률이 되도록 만드는 것이다.
+</div>
+```console
+> pip install glove_python_binary
+```
+```python
+from glove import Corpus, Glove
 
+corpus = Corpus() 
+corpus.fit(result, window=5)
+glove = Glove(no_components=100, learning_rate=0.05)
+
+glove.fit(corpus.matrix, epochs=20, no_threads=4, verbose=True)
+glove.add_dictionary(corpus.dictionary)
+
+print(glove.most_similar(...))
+```
+<div class="explain">
+<h4>FastText</h4>
+FastText는 Word2Vec을 확장시킨 개념이라고 할 수 있다. Word2Vec에서는 단어를 쪼개질 수 없는 단위로 생각하지만 FastText에서는 하나의 단어 안에도 여러 단어들 존재하는 것으로 간주한다. 내부 단어(subword)를 고려하여 학습한다. FastText에서는 각 단어는 글자 단위의 n-gram의 구성으로 취급한다. 이의 장점은 내부 단어를 통해 모르는 단어에 대해서도 다른 단어와의 유사도를 계산할 수 있다. 또한, 등장 빈도가 적은 단어에 대해서도 임베딩의 정확도를 올릴 수 있다. FastText 인공 신경망을 학습한 후에는 데이터셋의 모든 단어의 각 n-gram에 대하여 워드 임베딩이 된다.  
+<h4>Keras 임베딩 층</h4>
+</div>
+```python
+import numpy as np
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Embedding, Flatten
+
+sentences = ['nice great best amazing', 'stop lies', 'pitiful nerd', 'excellent work', 'supreme quality', 'bad', 'highly respectable']
+y_train = [1, 0, 0, 1, 1, 0, 1]
+tokenizer = Tokenizer()
+tokenizer.fit_on_texts(sentences)
+vocab_size = len(tokenizer.word_index) + 1
+
+X_encoded = tokenizer.texts_to_sequences(sentences)
+max_len = max(len(l) for l in X_encoded)
+
+X_train = pad_sequences(X_encoded, maxlen=max_len, padding='post')
+y_train = np.array(y_train)
+
+embedding_dim = 4
+
+model = Sequential()
+model.add(Embedding(vocab_size, embedding_dim, input_length=max_len))
+model.add(Flatten())
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
+model.fit(X_train, y_train, epochs=100, verbose=2)
+```
+
+<div class="explain">
+<h4>ELMo(Embeddings for Language Model)</h4>
+기존의 워드 임베딩 방법은 동음이의어처럼 문맥에 따라 달라지는 의미를 반영하지 못한다는 단점이 있었다. 따라서 워드 임베딩 시 문맥을 고려해서 임베딩을 하겠다는 아이디어가 문맥을 반영한 워드 임베딩이다. RNN 언어 모델은 문장으로부터 단어 단위로 입력을 받는데, RNN 내부의 은닉 상태는 시점(time step)이 지날수록 점점 업데이트 된다. 이는 은닉 산태의 값이 문장의 문맥 정보를 점차적으로 반영한다고 볼 수 있다. ELMo는 순방향 RNN 뿐만 아니라 반대 방향으로 문장을 스캔하는 역방향 RNN 또한 활용한다. 이처럼 양쪽 방향의 언어 모델을 둘 다 학습하여 활용한다고 하여 biLM(Bidirectional Language Model)이라고도 한다. biLM은 기본적으로 다층 구조(은닉층이 2개 이상)를 전제로 한다. biLM의 각 시점에 입력이 되는 단어 벡터는 임베딩 층(embedding layer)을 사용해서 얻은 것이 아니라 합성곱 신경망을 이용한 문자 임베딩(character embedding)을 통해 얻은 단어 벡터이다.
+<h4>임베딩 시각화</h4>
+구글 임베딩 프로젝터: <a href=" https://projector.tensorflow.org/"> https://projector.tensorflow.org/</a>
+<h4>자연어 처리를 위한 1D CNN</h4>
+1D CNN은 전체 시퀀스 입력 안의 더 작은 시퀀스에 집중하여 정보를 얻어내는 동작을 하는 알고리즘이다.
+</div>
+```python
+from tensorflow.keras.layers import Conv1D, GlobalMaxPooling1D
+
+model = Sequential()
+model.add(Conv1D(num_filters, kernel_size, padding='valid', activation='relu'))
+model.add(GlobalMaxPooling1D())
+```
+<div class="explain">
+<h4>문자 임베딩</h4>
+문자 임베딩을 워드 임베딩의 대체재로서 쓰거나, 문자 임베딩을 워드 임베딩과 연결(concatenate)하여 신경망의 입력으로 사용하기도 한다.
+<ul>
+<li> <b>1D CNN</b> <br>
+FastText가 문자의 n-gram의 조합을 이용하여 모르는 단어 문제를 해결했듯이 1D DNN을 문자 임베딩에 사용할 경우에는 문자의 n-gram으로부터 정보를 얻어재게 된다. 1D CNN에서 입력으로 단어를 문자 단위로 쪼개서 준다는 것만 다르다. 
+</li>
+<li><b>BiLSTM</b>
+1D CNN과 마찬가지로 기본적으로 단어를 문자 단위로 쪼갠 후 임베딩 층을 사용하여 문자 임베딩을 입력으로 사용한다. 우선, 단어를 문자 단위로 분리하고 임베딩 층을 이용하여 문자를 임베딩한다. 순방향 LSTM으로 단어 순방향으로 문자 임베딩 벡터를 읽고 역방향 LSTM으로 단어의 역방향으로 문자 임베딩 벡터를 읽는다. 그 후 순방향 LSTM의 마지막 시점의 은닉층과 역방향 LSTM의 첫번째 시점의 은닉 상태를 연결(concatenate)한다. 
+</li>
+</ul>
 </div>
 <h3>출처</h3>
 <a href="https://wikidocs.net/book/2155">딥러닝을 이용한 자연어 처리 입문</a>
