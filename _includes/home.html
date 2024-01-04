@@ -2,6 +2,7 @@
   <header class="post-header home">
     <div class="post-title">Articles</div>
   </header>
+  <p>{{paginator.total_pages}}</p>
 <!--change this with page numbering-->
   <div class="post-content">
       {%- if site.posts.size > 0 -%}
@@ -19,8 +20,9 @@
     </ul>
   {%- endif -%}
   </div>
+
+
 </article>
 
 
 
-</div>

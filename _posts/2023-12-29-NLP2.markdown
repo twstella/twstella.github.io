@@ -3,6 +3,7 @@ layout: post
 title: "빅데이터 혁신 융합대학 인턴 LLM 개발- NLP 기본 개념(2)"
 date: 2023-12-30 09:00:23 +0900
 categories:  ["NLP","Intern"]
+
 ---
 # NLP 기본 개념(2)
 <h3>단어 표현 방법</h3>

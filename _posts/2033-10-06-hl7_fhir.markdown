@@ -3,6 +3,7 @@ layout: post
 title: "HL7 FHIR(1)"
 date: 2023-10-06 09:36:23 +0900
 category:  "HL7_FHIR"
+
 ---
 
 <img class="logo"  src='{{ "public/img/FHIR_LOGO.png" | relative_url }}' alt='relative'/>
