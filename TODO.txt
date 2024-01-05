@@ -7,7 +7,6 @@
 -Flutter
 -Bigdata Intern
 -HL7 FHIR
--NLP
 
 
 > bundler exec jekyll serve --trace

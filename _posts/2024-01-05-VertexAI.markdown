@@ -1,0 +1,130 @@
+---
+layout: post
+title: "Google Cloud VertexAI API"
+date: 2024-01-05 09:50:23 +0900
+categories:  ["LLM","VertexAI"]
+
+---
+# Google Cloud BigQuery로 Healthcare data 분석하기
+<ol>
+<li>Google Cloud VertexAI API 사용 설정<br>
+<div class="explain">API 및 서비스 > API 및 서비스 사용 설정 > VertexAI API > 모든 권장 API 사용 설정
+<img class="picture"  src='{{ "public/img/vertex1.png" | relative_url }}' alt='relative'/><br>
+</div>
+</li>
+<li>Google Cloud CLI에 로그인</li>
+</ol>
+```console
+> gcloud init 
+> gcloud auth application-default login
+> pip install --upgrade google-cloud-aiplatform 
+```
+<ol start="3">
+<li>PaLM2로 텍스트 생성해보기</li>
+</ol>
+```python
+import vertexai
+from vertexai.language_models import TextGenerationModel
+import time
+def interview(
+    temperature: float,
+    project_id: str,
+    location: str,
+) -> str:
+    """Ideation example with a Large Language Model"""
+    vertexai.init(project=project_id, location=location)
+    # TODO developer - override these parameters as needed:
+    parameters = {
+        "temperature": temperature,  # Temperature controls the degree of randomness in token selection.
+        "max_output_tokens": 256,  # Token limit determines the maximum amount of text output.
+        "top_p": 0.8,  # Tokens are selected from most probable to least until the sum of their probabilities equals the top_p value.
+        "top_k": 40,  # A top_k of 1 means the selected token is the most probable among all tokens.
+    }
+    model = TextGenerationModel.from_pretrained("text-bison@001")
+    response = model.predict(
+        "Give me ten interview questions for the role of program manager.",
+        **parameters,
+    )
+    print(f"Response from Model: {response.text}")
+        return response.text
+if __name__ == "__main__":
+    start = time.time()
+    interview(0.1,"","")
+    print(time.time()-start)
+```
+<img  src='{{ "public/img/vertex1.png" | relative_url }}' alt='relative'/>
+<ol start="4">
+<li>PaLM2로 코드 만들어 보기</li>
+</ol>
+```python
+import vertexai
+from vertexai.language_models import CodeGenerationModel
+import time
+def interview(
+    temperature: float,
+    project_id: str,
+    location: str,
+) -> str:
+    """Ideation example with a Large Language Model"""
+    vertexai.init(project=project_id, location=location)
+    # TODO developer - override these parameters as needed:
+    parameters = {
+        "temperature": temperature,  # Temperature controls the degree of randomness in token selection.
+        "max_output_tokens": 1000,  # Token limit determines the maximum amount of text output.
+        "top_p": 0.8,  # Tokens are selected from most probable to least until the sum of their probabilities equals the top_p value.
+        "top_k": 40,  # A top_k of 1 means the selected token is the most probable among all tokens.
+    }
+    model = CodeGenerationModel.from_pretrained("code-bison@002")
+    response = model.predict(
+        prefix = """
+        Write me a python code for showing image file through open cv library.
+        """
+    )
+    print(f"Response from Model: {response.text}")
+    return response.text
+if __name__ == "__main__":
+    start = time.time()
+    interview(0.1,"","")
+    print(time.time()-start)
+```
+<img   src='{{ "public/img/vertex3.png" | relative_url }}' alt='relative'/>
+<ol start="5">
+<li>Gemini로 코드 만들어 보기</li>
+</ol>
+```python
+import time
+def generate_text(project_id: str, location: str) -> str:
+    # Initialize Vertex AI
+    import vertexai
+    vertexai.init(project=project_id, location=location)
+    from vertexai.preview.generative_models import GenerativeModel, Part
+    multimodal_model = GenerativeModel("gemini-pro")
+    response = multimodal_model.generate_content(
+        [
+            "Write me a python code for showing image file through open cv library."
+        ]
+    )
+    print(response)
+    print("model_response\n",response.candidates[0].text)
+    # return response.text
+if __name__ == "__main__":
+    start = time.time()
+    generate_text("rapid-arbor-395501","asia-northeast3")
+    print(time.time()-start)
+```
+<img   src='{{ "public/img/vertex4.png" | relative_url }}' alt='relative'/>
+<h3>추가 자료</h3>
+<ul>
+<li><a href="https://cloud.google.com/vertex-ai/docs/generative-ai/start/quickstarts/quickstart-text#generative-ai-test-text-prompt-python_vertex_ai_sdk
+">https://cloud.google.com/vertex-ai/docs/generative-ai/start/quickstarts/quickstart-text#generative-ai-test-text-prompt-python_vertex_ai_sdk
+</a></li>
+<li><a href="https://cloud.google.com/vertex-ai/docs/generative-ai/start/quickstarts/quickstart-text#generative-ai-test-text-prompt-python_vertex_ai_sdk
+">https://cloud.google.com/vertex-ai/docs/generative-ai/start/quickstarts/quickstart-text#generative-ai-test-text-prompt-python_vertex_ai_sdk
+</a></li>
+<li><a href="https://cloud.google.com/vertex-ai/docs/generative-ai/start/quickstarts/quickstart-multimodal
+">https://cloud.google.com/vertex-ai/docs/generative-ai/start/quickstarts/quickstart-multimodal
+</a></li>
+<li><a href="https://cloud.google.com/vertex-ai/docs/generative-ai/multimodal/sdk-for-gemini/gemini-sdk-overview-reference
+">https://cloud.google.com/vertex-ai/docs/generative-ai/multimodal/sdk-for-gemini/gemini-sdk-overview-reference
+</a></li>
+</ul>
